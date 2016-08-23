@@ -4,15 +4,26 @@
 <html>
 <head>
 
+<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="resources/css/style.css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
 
-	<nav class="navbar navbar-inverse">
+	<nav class="navbar navbar-default ">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="#">Aidoo</a>
@@ -26,6 +37,8 @@
 		</ul>
 	</div>
 	</nav>
+
+	<!-- 	Carroussel -->
 
 	<div class="container">
 		<br>
@@ -42,13 +55,13 @@
 			<div class="carousel-inner" role="listbox">
 
 				<div class="item active">
-					<img src="http://placehold.it/1350x450" alt="Chania" >
-					
+					<img src="http://placehold.it/1350x450" alt="Chania">
+
 				</div>
 
 				<div class="item">
 					<img src="http://placehold.it/1350x450" alt="Chania">
-					
+
 				</div>
 
 				<div class="item">
@@ -60,7 +73,7 @@
 				</div>
 
 				<div class="item">
-					<img src="http://placehold.it/1350x450" alt="Flower" >
+					<img src="http://placehold.it/1350x450" alt="Flower">
 					<div class="carousel-caption">
 						<h3>Flowers</h3>
 						<p>Beatiful flowers in Kolymbari, Crete.</p>
@@ -82,10 +95,49 @@
 		</div>
 	</div>
 
+	<!-- End Carroussel -->
 
-	<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
-	<script type="text/javascript"
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+	<!-- Search Criteria Bar -->
+
+	<div class="container" style="padding-top: 30px;">
+
+		<div class="row">
+
+			<form action="annonce" method="Post">
+				<div class="col-md-3 ">
+					<select id="select01" style="">
+						<option>Je Cherche</option>
+						<option>Select me!</option>
+					</select>
+				</div>
+
+				<div class="col-md-3 ">
+					<input type="text" class="form control">
+				</div>
+				<div class="col-md-3 ">
+					<select id="select03">
+						<option>Distance</option>
+						<option>Select me!</option>
+					</select>
+				</div>
+				<div class="col-md-3 ">
+					<button type="submit" class="btn btn-success btn-sm">Go
+						>>></button>
+				</div>
+
+			</form>
+		</div>
+
+
+	</div>
+
+
+
+	<!-- End Search Criteria Bar -->
+
+
+
 
 </body>
 </html>
