@@ -29,7 +29,7 @@ public class ProfessionnalList implements Serializable {
 	@Column(name="hour_price")
 	private double hourPrice;
 
-	private String picture;
+	
 
 	private byte psc1;
 
@@ -92,13 +92,7 @@ public class ProfessionnalList implements Serializable {
 		this.hourPrice = hourPrice;
 	}
 
-	public String getPicture() {
-		return this.picture;
-	}
-
-	public void setPicture(String picture) {
-		this.picture = picture;
-	}
+	
 
 	public byte getPsc1() {
 		return this.psc1;

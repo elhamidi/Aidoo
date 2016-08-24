@@ -29,7 +29,7 @@
 				<c:out value="${annonce.text}"></c:out>
 			</p>
 			<div class="member-avatar">
-				<img alt="" src="resources/img/test.jpg" />
+				<img alt="" src="resources/img/${annonce.person.picture}.jpg" />
 			</div>
 		</article>
 		</c:forEach>
@@ -37,7 +37,6 @@
 		
 
 	</section>	</section>
-
 
 
 <!-- end of Content -->

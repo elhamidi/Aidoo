@@ -42,32 +42,35 @@
 	<!-- 4 menus du bas -->
 	
 	<div class="row" id="inputs" style="margin-top: 50px; margin-bottom: 50px;">
-	
+	<form action="annonces" method="get">
 	<div class="span2 offset1">
 			<label  >Rechercher</label>
 		</div>
 
 		<div class="span3">
-			<select id="select01">
-				<option>Je cherche</option>
-				<option>Bayby-sitter</option>
-				<option>Femme de ménage</option>
+			<select name="catname">
+				<<c:forEach items="${categories}" var="cat">
+
+							<option value="${cat.name}">${cat.name}</option>
+
+						</c:forEach>
 			</select>
 		</div>
 		<div class="span3">
-			<select id="select01">
-				<option>Code Postal</option>
-				<option>1000</option>
-				<option>1050</option>
-				<option>1070</option>
-				<option>1060</option>
+			<select name="zipcode">
+				<c:forEach items="${zipcodes}" var="zip">
+
+							<option value="${zip.zipCode}">${zip.zipName}</option>
+
+						</c:forEach>
 				
 			</select>
 		</div>
 		
 		<div class="span3">
-			<a  class="button">Rechercher</a>
+			<button type="submit"  >Rechercher</button>
 		</div>
+		</form>
 	</div>
 	
 <!-- fin 4 menus du bas -->

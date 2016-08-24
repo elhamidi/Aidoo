@@ -54,10 +54,9 @@ public class HomeController {
 		model.addAttribute("zipcodes", zipCodeService.findAllZipCodes());
 		model.addAttribute("categories" , categoryAnnounceService.findAll());
 		
-		
+		System.out.println();
 				
 		return "homePage";
-		
 		
 	}
 

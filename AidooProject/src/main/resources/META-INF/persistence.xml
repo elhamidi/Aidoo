@@ -3,7 +3,6 @@
 	<persistence-unit name="AidooProject">
 		<class>be.bt.entities.Announce</class>
 		<class>be.bt.entities.CatFrequencyDispo</class>
-		<class>be.bt.entities.CatProbleme</class>
 		<class>be.bt.entities.CatTask</class>
 		<class>be.bt.entities.CategoryAnnounce</class>
 		<class>be.bt.entities.Comment</class>

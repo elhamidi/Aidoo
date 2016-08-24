@@ -97,10 +97,7 @@ public class Person implements Serializable {
 	@JoinColumn(name="zip_code_id")
 	private ZipCode zipCode;
 
-	//bi-directional many-to-one association to CatProbleme
-	@ManyToOne
-	@JoinColumn(name="cat_problemes_id")
-	private CatProbleme catProbleme;
+	
 
 	//bi-directional many-to-one association to PersonHasLanguage
 	@OneToMany(mappedBy="person")
@@ -113,6 +110,23 @@ public class Person implements Serializable {
 	//bi-directional many-to-one association to Task
 	@OneToMany(mappedBy="person")
 	private List<Task> tasks;
+	
+	@Column(name="picture")
+	private String picture;
+
+	/**
+	 * @return the picture
+	 */
+	public String getPicture() {
+		return picture;
+	}
+
+	/**
+	 * @param picture the picture to set
+	 */
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
 
 	public Person() {
 	}
@@ -415,13 +429,7 @@ public class Person implements Serializable {
 		this.zipCode = zipCode;
 	}
 
-	public CatProbleme getCatProbleme() {
-		return this.catProbleme;
-	}
 
-	public void setCatProbleme(CatProbleme catProbleme) {
-		this.catProbleme = catProbleme;
-	}
 
 	public List<PersonHasLanguage> getPersonHasLanguages() {
 		return this.personHasLanguages;
