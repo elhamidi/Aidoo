@@ -24,10 +24,9 @@ public interface AnnounceRepository extends JpaRepository<Announce, String> {
 	List<Announce> findAnnoucesByZipCode(@Param ("zip") String zipcode);
 	
 	
-	@Query ("FROM Announce a  JOIN FETCH a.person JOIN FETCH a.categoryAnnounce where a.person.zipCode.zipCode = :zip  AND a.categoryAnnounce.name= :catName")
+	@Query ("FROM Announce a  JOIN FETCH a.person JOIN FETCH a.categoryAnnounce where a.person.zipCode.zipCode = :zip "
+			+ " AND a.categoryAnnounce.name= :catName")
 	List<Announce> findAnnoucesByZipCodeAndCategory(@Param ("zip") String zipcode,
 			@Param ("catName") String catName);
 	
-	
-
 }

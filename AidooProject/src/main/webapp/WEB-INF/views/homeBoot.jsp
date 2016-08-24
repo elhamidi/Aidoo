@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -104,19 +106,23 @@
 
 		<div class="row">
 
-			<form action="annonce" method="Post">
+			<form action="annonces" method="Get">
 				<div class="col-md-3 ">
-					<select id="select01" style="">
-						<option>Je Cherche</option>
-						<option>Select me!</option>
+					<select name="catname" style="">
+						<c:forEach items="${ categories}" var="cat">
+
+							<option value="${cat.name }">${cat.name }</option>
+
+						</c:forEach>
+
 					</select>
 				</div>
 
 				<div class="col-md-3 ">
-					<input type="text" class="form control">
+					<input name="zipcode" id="zipcode" type="text" class="form control">
 				</div>
 				<div class="col-md-3 ">
-					<select id="select03">
+					<select name="select03">
 						<option>Distance</option>
 						<option>Select me!</option>
 					</select>
