@@ -63,12 +63,34 @@
 			<div class="navbar-inner">
 				<div class="container">
 					<!-- Logo -->
-					<a class="brand" href="index.html"> Aidoo </a>
+					<a class="brand" href="${pageContext.request.contextPath}">
+						Aidoo </a>
 					<ul class="nav">
 
-						<li><a href="blog.html" title="Our blog">Inscription</a></li>
+						<c:if test="${pageContext.request.userPrincipal.name != null}">
+							<li><span> <a
+									href="${pageContext.request.contextPath}/home"
+									title="Connexion">
 
-						<li><a href="contact.html" title="Contact us">Connexion</a></li>
+										${pageContext.request.userPrincipal.name}</a>
+
+							</span>
+							<span class="caret"></span>
+							
+							</li>
+						</c:if>
+						<c:if test="${pageContext.request.userPrincipal.name == null}">
+
+							<li><a href="${pageContext.request.contextPath}/inscription"
+								title="inscription">Inscription</a></li>
+
+
+							<li><a href="${pageContext.request.contextPath}/home"
+								title="Connexion">Connexion</a></li>
+						</c:if>
+
+
+
 					</ul>
 				</div>
 				<!-- end .container -->
