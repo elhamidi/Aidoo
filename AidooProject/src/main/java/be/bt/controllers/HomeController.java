@@ -47,7 +47,7 @@ public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = {"/"}, method = RequestMethod.GET)
 	public String home(Model model) {
 		
 		
@@ -55,6 +55,23 @@ public class HomeController {
 		model.addAttribute("categories" , categoryAnnounceService.findAll());
 		
 		System.out.println();
+				
+		return "homePage";
+		
+	}
+	
+	
+	@RequestMapping(value = {"/home"}, method = RequestMethod.GET)
+	public String homeControlled(Model model) {
+		
+		
+//		model.addAttribute("zipcodes", zipCodeService.findAllZipCodes());
+//		model.addAttribute("categories" , categoryAnnounceService.findAll());
+//		
+//		System.out.println();
+		
+		model.addAttribute("zipcodes", zipCodeService.findAllZipCodes());
+		model.addAttribute("categories" , categoryAnnounceService.findAll());
 				
 		return "homePage";
 		

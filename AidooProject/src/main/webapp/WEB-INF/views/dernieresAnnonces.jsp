@@ -15,7 +15,7 @@
 	<section id="team-members">
 		<c:forEach items="${lastAnnounces}" var="annonce" begin="0" end="9">
 		<article class="member">
-			<h3 class="member-name"><a href="#"><c:out value="${annonce.person.lastName}"></c:out></a></h3>
+			<h3 class="member-name"><a href="<c:url value="/showProfil"/> "><c:out value="${annonce.person.lastName}"></c:out></a></h3>
 			<h4 class="member-position"><c:out value="${annonce.person.zipCode.zipName}"></c:out></h4>
 <!-- 			<p class="member-networks"> -->
 <!-- 				<a href="#" class="icon-twitter"></a> -->
