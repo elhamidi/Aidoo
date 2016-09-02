@@ -3,7 +3,6 @@ package be.bt.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -24,10 +23,6 @@ public class MsgObject implements Serializable {
 	private Date dateCreation;
 
 	private String object;
-
-	//bi-directional many-to-one association to MsgDisc
-	@OneToMany(mappedBy="msgObject")
-	private List<MsgDisc> msgDiscs;
 
 	public MsgObject() {
 	}
@@ -54,28 +49,6 @@ public class MsgObject implements Serializable {
 
 	public void setObject(String object) {
 		this.object = object;
-	}
-
-	public List<MsgDisc> getMsgDiscs() {
-		return this.msgDiscs;
-	}
-
-	public void setMsgDiscs(List<MsgDisc> msgDiscs) {
-		this.msgDiscs = msgDiscs;
-	}
-
-	public MsgDisc addMsgDisc(MsgDisc msgDisc) {
-		getMsgDiscs().add(msgDisc);
-		msgDisc.setMsgObject(this);
-
-		return msgDisc;
-	}
-
-	public MsgDisc removeMsgDisc(MsgDisc msgDisc) {
-		getMsgDiscs().remove(msgDisc);
-		msgDisc.setMsgObject(null);
-
-		return msgDisc;
 	}
 
 }

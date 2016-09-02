@@ -12,7 +12,7 @@ import be.bt.entities.Announce;
 @Repository
 public interface AnnounceRepository extends JpaRepository<Announce, String> {
 	
-	@Query("FROM Announce a JOIN FETCH a.person join fetch a.person.listCountry")
+	@Query("FROM Announce a JOIN FETCH a.person ")
 	List<Announce> findAllAnnounces();
 	
 	
@@ -30,3 +30,6 @@ public interface AnnounceRepository extends JpaRepository<Announce, String> {
 			@Param ("catName") String catName);
 	
 }
+
+
+

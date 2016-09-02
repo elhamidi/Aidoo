@@ -30,13 +30,7 @@ import be.bt.utilities.GeoUtil;
 @Controller
 public class HomeController {
 
-//	@Autowired
-//	PersonRepository personRepository;
-//
-//	@Autowired
-//	AnnounceRepository announceRepository;
-	
-//	
+
 	@Autowired
 	IZipCodeService zipCodeService;
 	

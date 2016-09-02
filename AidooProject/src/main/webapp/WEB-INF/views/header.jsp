@@ -33,6 +33,9 @@
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800'
 	rel='stylesheet' type='text/css'>
+	<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
+	rel='stylesheet' type='text/css'>
 
 <!-- Javascript -->
 <script
@@ -68,20 +71,24 @@
 					<ul class="nav">
 
 						<c:if test="${pageContext.request.userPrincipal.name != null}">
-							<li><span> <a
-									href="${pageContext.request.contextPath}/home"
-									title="Connexion">
-
-										${pageContext.request.userPrincipal.name}</a>
-
-							</span>
-							<span class="caret"></span>
+							<li class="dropdown" style="left:-50px;display: inline-block">
 							
-							</li>
+							<a
+								href="${pageContext.request.contextPath}/home" title="Connexion">
+
+									${pageContext.request.userPrincipal.name}</a>
+								
+
+								<ul>
+									<li><a href="{URL}" title="">Mon Profil</a></li>
+									<li><a href="{URL}" title="">Mes Annonces</a></li>
+									<li><a href="${pageContext.request.contextPath}/logout" title="">Déconenxion</a></li>
+
+								</ul></li>
 						</c:if>
 						<c:if test="${pageContext.request.userPrincipal.name == null}">
 
-							<li><a href="${pageContext.request.contextPath}/inscription"
+							<li><a href="${pageContext.request.contextPath}/preRegistration"
 								title="inscription">Inscription</a></li>
 
 

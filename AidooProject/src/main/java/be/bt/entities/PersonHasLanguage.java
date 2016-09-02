@@ -17,13 +17,12 @@ public class PersonHasLanguage implements Serializable {
 	@Id
 	private int id;
 
+	@Column(name="language_id")
+	private int languageId;
+
 	//bi-directional many-to-one association to Person
 	@ManyToOne
 	private Person person;
-
-	//bi-directional many-to-one association to Language
-	@ManyToOne
-	private Language language;
 
 	public PersonHasLanguage() {
 	}
@@ -36,20 +35,20 @@ public class PersonHasLanguage implements Serializable {
 		this.id = id;
 	}
 
+	public int getLanguageId() {
+		return this.languageId;
+	}
+
+	public void setLanguageId(int languageId) {
+		this.languageId = languageId;
+	}
+
 	public Person getPerson() {
 		return this.person;
 	}
 
 	public void setPerson(Person person) {
 		this.person = person;
-	}
-
-	public Language getLanguage() {
-		return this.language;
-	}
-
-	public void setLanguage(Language language) {
-		this.language = language;
 	}
 
 }

@@ -29,16 +29,11 @@ public class ProfessionnalList implements Serializable {
 	@Column(name="hour_price")
 	private double hourPrice;
 
-	
+	private String picture;
 
 	private byte psc1;
 
 	private byte smoker;
-
-	//bi-directional many-to-one association to ProfessionnalCategory
-	@ManyToOne
-	@JoinColumn(name="idprofessionnal_category")
-	private ProfessionnalCategory professionnalCategory1;
 
 	//bi-directional many-to-one association to Person
 	@ManyToOne
@@ -47,7 +42,7 @@ public class ProfessionnalList implements Serializable {
 	//bi-directional many-to-one association to ProfessionnalCategory
 	@ManyToOne
 	@JoinColumn(name="professionnal_category_id")
-	private ProfessionnalCategory professionnalCategory2;
+	private ProfessionnalCategory professionnalCategory;
 
 	public ProfessionnalList() {
 	}
@@ -92,7 +87,13 @@ public class ProfessionnalList implements Serializable {
 		this.hourPrice = hourPrice;
 	}
 
-	
+	public String getPicture() {
+		return this.picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
 
 	public byte getPsc1() {
 		return this.psc1;
@@ -110,14 +111,6 @@ public class ProfessionnalList implements Serializable {
 		this.smoker = smoker;
 	}
 
-	public ProfessionnalCategory getProfessionnalCategory1() {
-		return this.professionnalCategory1;
-	}
-
-	public void setProfessionnalCategory1(ProfessionnalCategory professionnalCategory1) {
-		this.professionnalCategory1 = professionnalCategory1;
-	}
-
 	public Person getPerson() {
 		return this.person;
 	}
@@ -126,12 +119,12 @@ public class ProfessionnalList implements Serializable {
 		this.person = person;
 	}
 
-	public ProfessionnalCategory getProfessionnalCategory2() {
-		return this.professionnalCategory2;
+	public ProfessionnalCategory getProfessionnalCategory() {
+		return this.professionnalCategory;
 	}
 
-	public void setProfessionnalCategory2(ProfessionnalCategory professionnalCategory2) {
-		this.professionnalCategory2 = professionnalCategory2;
+	public void setProfessionnalCategory(ProfessionnalCategory professionnalCategory) {
+		this.professionnalCategory = professionnalCategory;
 	}
 
 }

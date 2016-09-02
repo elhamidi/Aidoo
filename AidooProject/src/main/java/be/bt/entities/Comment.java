@@ -28,12 +28,12 @@ public class Comment implements Serializable {
 
 	//bi-directional many-to-one association to Person
 	@ManyToOne
-	@JoinColumn(name="commented_id")
+	@JoinColumn(name="commentator_id")
 	private Person person1;
 
 	//bi-directional many-to-one association to Person
 	@ManyToOne
-	@JoinColumn(name="commentator_id")
+	@JoinColumn(name="commented_id")
 	private Person person2;
 
 	public Comment() {

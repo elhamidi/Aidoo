@@ -16,14 +16,14 @@ public class Dispo implements Serializable {
 	@Id
 	private int id;
 
-	//bi-directional many-to-one association to Person
-	@ManyToOne
-	private Person person;
-
 	//bi-directional many-to-one association to DayDispo
 	@ManyToOne
 	@JoinColumn(name="day_dispo_Id")
 	private DayDispo dayDispo;
+
+	//bi-directional many-to-one association to Person
+	@ManyToOne
+	private Person person;
 
 	//bi-directional many-to-one association to TimeSlot
 	@ManyToOne
@@ -41,20 +41,20 @@ public class Dispo implements Serializable {
 		this.id = id;
 	}
 
-	public Person getPerson() {
-		return this.person;
-	}
-
-	public void setPerson(Person person) {
-		this.person = person;
-	}
-
 	public DayDispo getDayDispo() {
 		return this.dayDispo;
 	}
 
 	public void setDayDispo(DayDispo dayDispo) {
 		this.dayDispo = dayDispo;
+	}
+
+	public Person getPerson() {
+		return this.person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 
 	public TimeSlot getTimeSlot() {

@@ -13,7 +13,7 @@
 	<context:property-placeholder location="resources/database.properties" />
 
 	<!-- Activer les repositories JPA -->
-	<jpa:repositories base-package="be.bt" />
+	<jpa:repositories base-package="be.bt.repository" />
 
 	<!-- DataSource avec un pool de connection Hikari CP -->
 	<bean id="datasource_pool_hikari" class="com.zaxxer.hikari.HikariDataSource">
@@ -40,7 +40,7 @@
 		<property name="dataSource" ref="datasource_pool_hikari" />
 		<property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
 		<!-- spring based scanning for entity classes -->
-		<property name="packagesToScan" value="be.bt" />
+		<property name="packagesToScan" value="be.bt.entities" />
 	</bean>
 
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" />

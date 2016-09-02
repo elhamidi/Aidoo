@@ -33,21 +33,17 @@ public class Person implements Serializable {
 	@Column(name="last_name")
 	private String lastName;
 
-	@Column(name="login_id")
-	private int loginId;
-
 	private String mobile;
 
-	@Column(name="`nis number`")
-	private String nis_number;
+	@Column(name="nis_number")
+	private String nisNumber;
 
 	private String num;
 
-	@Column(name="password_user")
-	private String passwordUser;
-
 	@Column(name="phone_number")
 	private String phoneNumber;
+
+	private String picture;
 
 	@Column(name="pos_latitude")
 	private float posLatitude;
@@ -79,25 +75,15 @@ public class Person implements Serializable {
 	@OneToMany(mappedBy="person")
 	private List<FrequencyDispo> frequencyDispos;
 
-	//bi-directional many-to-one association to MsgDisc
-	@OneToMany(mappedBy="person1")
-	private List<MsgDisc> msgDiscs1;
-
-	//bi-directional many-to-one association to MsgDisc
-	@OneToMany(mappedBy="person2")
-	private List<MsgDisc> msgDiscs2;
-
-	//bi-directional many-to-one association to ListCountry
+	//bi-directional many-to-one association to MyUser
 	@ManyToOne
-	@JoinColumn(name="list_country_id")
-	private ListCountry listCountry;
+	@JoinColumn(name="username")
+	private MyUser user;
 
 	//bi-directional many-to-one association to ZipCode
 	@ManyToOne
 	@JoinColumn(name="zip_code_id")
 	private ZipCode zipCode;
-
-	
 
 	//bi-directional many-to-one association to PersonHasLanguage
 	@OneToMany(mappedBy="person")
@@ -110,23 +96,6 @@ public class Person implements Serializable {
 	//bi-directional many-to-one association to Task
 	@OneToMany(mappedBy="person")
 	private List<Task> tasks;
-	
-	@Column(name="picture")
-	private String picture;
-
-	/**
-	 * @return the picture
-	 */
-	public String getPicture() {
-		return picture;
-	}
-
-	/**
-	 * @param picture the picture to set
-	 */
-	public void setPicture(String picture) {
-		this.picture = picture;
-	}
 
 	public Person() {
 	}
@@ -179,14 +148,6 @@ public class Person implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public int getLoginId() {
-		return this.loginId;
-	}
-
-	public void setLoginId(int loginId) {
-		this.loginId = loginId;
-	}
-
 	public String getMobile() {
 		return this.mobile;
 	}
@@ -195,12 +156,12 @@ public class Person implements Serializable {
 		this.mobile = mobile;
 	}
 
-	public String getNis_number() {
-		return this.nis_number;
+	public String getNisNumber() {
+		return this.nisNumber;
 	}
 
-	public void setNis_number(String nis_number) {
-		this.nis_number = nis_number;
+	public void setNisNumber(String nisNumber) {
+		this.nisNumber = nisNumber;
 	}
 
 	public String getNum() {
@@ -211,20 +172,20 @@ public class Person implements Serializable {
 		this.num = num;
 	}
 
-	public String getPasswordUser() {
-		return this.passwordUser;
-	}
-
-	public void setPasswordUser(String passwordUser) {
-		this.passwordUser = passwordUser;
-	}
-
 	public String getPhoneNumber() {
 		return this.phoneNumber;
 	}
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+
+	public String getPicture() {
+		return this.picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 
 	public float getPosLatitude() {
@@ -243,7 +204,7 @@ public class Person implements Serializable {
 		this.posLongitude = posLongitude;
 	}
 
-	public Object getSex() {
+	public byte getSex() {
 		return this.sex;
 	}
 
@@ -369,56 +330,12 @@ public class Person implements Serializable {
 		return frequencyDispo;
 	}
 
-	public List<MsgDisc> getMsgDiscs1() {
-		return this.msgDiscs1;
+	public MyUser getUser() {
+		return this.user;
 	}
 
-	public void setMsgDiscs1(List<MsgDisc> msgDiscs1) {
-		this.msgDiscs1 = msgDiscs1;
-	}
-
-	public MsgDisc addMsgDiscs1(MsgDisc msgDiscs1) {
-		getMsgDiscs1().add(msgDiscs1);
-		msgDiscs1.setPerson1(this);
-
-		return msgDiscs1;
-	}
-
-	public MsgDisc removeMsgDiscs1(MsgDisc msgDiscs1) {
-		getMsgDiscs1().remove(msgDiscs1);
-		msgDiscs1.setPerson1(null);
-
-		return msgDiscs1;
-	}
-
-	public List<MsgDisc> getMsgDiscs2() {
-		return this.msgDiscs2;
-	}
-
-	public void setMsgDiscs2(List<MsgDisc> msgDiscs2) {
-		this.msgDiscs2 = msgDiscs2;
-	}
-
-	public MsgDisc addMsgDiscs2(MsgDisc msgDiscs2) {
-		getMsgDiscs2().add(msgDiscs2);
-		msgDiscs2.setPerson2(this);
-
-		return msgDiscs2;
-	}
-
-	public MsgDisc removeMsgDiscs2(MsgDisc msgDiscs2) {
-		getMsgDiscs2().remove(msgDiscs2);
-		msgDiscs2.setPerson2(null);
-
-		return msgDiscs2;
-	}
-
-	public ListCountry getListCountry() {
-		return this.listCountry;
-	}
-
-	public void setListCountry(ListCountry listCountry) {
-		this.listCountry = listCountry;
+	public void setUser(MyUser user) {
+		this.user = user;
 	}
 
 	public ZipCode getZipCode() {
@@ -428,8 +345,6 @@ public class Person implements Serializable {
 	public void setZipCode(ZipCode zipCode) {
 		this.zipCode = zipCode;
 	}
-
-
 
 	public List<PersonHasLanguage> getPersonHasLanguages() {
 		return this.personHasLanguages;

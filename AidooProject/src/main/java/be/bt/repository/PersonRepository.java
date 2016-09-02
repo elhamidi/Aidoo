@@ -19,5 +19,5 @@ public interface PersonRepository extends JpaRepository<Person, String>{
 	
 	@Query ("select p from Person p join fetch p.zipCode where p.zipCode.zipName = :zipname ")
 	List<Person> findByZipCode(@Param("zipname") String zipeCode);
-		
+			
 }

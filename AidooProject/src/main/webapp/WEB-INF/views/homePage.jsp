@@ -3,9 +3,6 @@
 
 <!-- Content Here -->
 
-
-
-
 </section>
 <!-- end .container -->
 
@@ -87,7 +84,7 @@
 
 				<div class="thumbnail">
 					<!-- image -->
-					<img alt="" src="http://placehold.it/150x100/7ED090/fff">
+					<img alt="" src="resources/img/jeCherche.png">
 
 					<!-- description -->
 					<div class="project-description">
@@ -108,7 +105,7 @@
 
 			<article class="span3 project ">
 				<div class="thumbnail">
-					<img alt="" src="http://placehold.it/150x100/F26A46/fff">
+					<img alt="" src="resources/img/jeSelectionne.png">
 						<div class="project-description">
 							<b class="name">Je selectionne</b> <i class="icon-font"></i>
 						</div>
@@ -118,7 +115,7 @@
 
 			<article class="span3 project ">
 				<div class="thumbnail">
-					<img alt="" src="http://placehold.it/150x100/A2DEE3/fff">
+					<img alt="" src="resources/img/JeContact.png">
 
 					<div class="project-description">
 						<b class="name">Je contacte</b> <i class="icon-play"></i>
@@ -129,7 +126,7 @@
 
 			<article class="span3 project ">
 				<div class="thumbnail">
-					<img alt="" src="http://placehold.it/150x100/A2DEE3/fff">
+					<img alt="" src="resources/img/JeRecommande.png">
 
 					<div class="project-description">
 						<b class="name">Je Recommande</b> <i class="icon-play"></i>
@@ -143,8 +140,6 @@
 		<!-- Fin partie image -->
 
 		<hr>
-
-
 
 		<!-- DEBUT -- menu du bas avec logo	-->
 

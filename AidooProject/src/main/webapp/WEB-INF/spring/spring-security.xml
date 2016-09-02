@@ -10,21 +10,20 @@
 	<security:http auto-config="true" use-expressions="true">
 
 
-		<security:intercept-url 
-			pattern="/showProfil"
-			access="hasRole('ROLE_administrateur')" />
-			<security:intercept-url 
-			pattern="/home"
-			access="hasRole('ROLE_administrateur')" />
-	
+		<security:intercept-url pattern="/showProfil"
+			access="hasRole('administrateur')" />
+		<security:intercept-url pattern="/home"
+			access="hasRole('babysitter')" />
+
 
 		<security:form-login login-page="/login"
-			 username-parameter="username"
-			password-parameter="password"  />
+			username-parameter="login" 
+			password-parameter="password" 
+			/>
 
-<!-- 		<security:logout invalidate-session="true" -->
-<!-- 			logout-success-url="/" /> -->
-<!-- 		<security:csrf disabled="true" /> -->
+		<!-- <security:logout invalidate-session="true" -->
+		<!-- logout-success-url="/" /> -->
+		<!-- <security:csrf disabled="true" /> -->
 
 		<!-- enable csrf protection -->
 		<!-- <security:csrf /> -->
@@ -32,19 +31,32 @@
 	</security:http>
 
 	<!-- Regles d'authentification -->
+<!-- 	<security:authentication-manager> -->
+<!-- 		<security:authentication-provider> -->
+
+<!-- 			<security:user-service> -->
+<!-- 				<security:user name="mohamed" password="mohamed" -->
+<!-- 					authorities="ROLE_administrateur" /> -->
+
+
+<!-- 			</security:user-service> -->
+<!-- 		</security:authentication-provider> -->
+
+<!-- 	</security:authentication-manager> -->
+
+<!-- Select users and user_roles from database -->
+
 	<security:authentication-manager>
-		<security:authentication-provider>
-
-			<security:user-service>
-
-				<security:user name="momo" password="mohamed"
-					authorities="ROLE_administrateur" />
-
-
-			</security:user-service>
-		</security:authentication-provider>
-
-
+	  <security:authentication-provider>
+		<security:jdbc-user-service data-source-ref="datasource_pool_hikari"  
+		  users-by-username-query=
+		    "select username,password, enabled from users where username=?"		   
+		  authorities-by-username-query=
+		    "select username, role from user_roles where username =?  " />
+	  </security:authentication-provider>
 	</security:authentication-manager>
+
+
+
 
 </beans>

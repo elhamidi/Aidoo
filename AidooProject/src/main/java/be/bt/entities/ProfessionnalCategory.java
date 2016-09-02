@@ -23,12 +23,8 @@ public class ProfessionnalCategory implements Serializable {
 	private String professionnalTitle;
 
 	//bi-directional many-to-one association to ProfessionnalList
-	@OneToMany(mappedBy="professionnalCategory1")
-	private List<ProfessionnalList> professionnalLists1;
-
-	//bi-directional many-to-one association to ProfessionnalList
-	@OneToMany(mappedBy="professionnalCategory2")
-	private List<ProfessionnalList> professionnalLists2;
+	@OneToMany(mappedBy="professionnalCategory")
+	private List<ProfessionnalList> professionnalLists;
 
 	public ProfessionnalCategory() {
 	}
@@ -49,48 +45,26 @@ public class ProfessionnalCategory implements Serializable {
 		this.professionnalTitle = professionnalTitle;
 	}
 
-	public List<ProfessionnalList> getProfessionnalLists1() {
-		return this.professionnalLists1;
+	public List<ProfessionnalList> getProfessionnalLists() {
+		return this.professionnalLists;
 	}
 
-	public void setProfessionnalLists1(List<ProfessionnalList> professionnalLists1) {
-		this.professionnalLists1 = professionnalLists1;
+	public void setProfessionnalLists(List<ProfessionnalList> professionnalLists) {
+		this.professionnalLists = professionnalLists;
 	}
 
-	public ProfessionnalList addProfessionnalLists1(ProfessionnalList professionnalLists1) {
-		getProfessionnalLists1().add(professionnalLists1);
-		professionnalLists1.setProfessionnalCategory1(this);
+	public ProfessionnalList addProfessionnalList(ProfessionnalList professionnalList) {
+		getProfessionnalLists().add(professionnalList);
+		professionnalList.setProfessionnalCategory(this);
 
-		return professionnalLists1;
+		return professionnalList;
 	}
 
-	public ProfessionnalList removeProfessionnalLists1(ProfessionnalList professionnalLists1) {
-		getProfessionnalLists1().remove(professionnalLists1);
-		professionnalLists1.setProfessionnalCategory1(null);
+	public ProfessionnalList removeProfessionnalList(ProfessionnalList professionnalList) {
+		getProfessionnalLists().remove(professionnalList);
+		professionnalList.setProfessionnalCategory(null);
 
-		return professionnalLists1;
-	}
-
-	public List<ProfessionnalList> getProfessionnalLists2() {
-		return this.professionnalLists2;
-	}
-
-	public void setProfessionnalLists2(List<ProfessionnalList> professionnalLists2) {
-		this.professionnalLists2 = professionnalLists2;
-	}
-
-	public ProfessionnalList addProfessionnalLists2(ProfessionnalList professionnalLists2) {
-		getProfessionnalLists2().add(professionnalLists2);
-		professionnalLists2.setProfessionnalCategory2(this);
-
-		return professionnalLists2;
-	}
-
-	public ProfessionnalList removeProfessionnalLists2(ProfessionnalList professionnalLists2) {
-		getProfessionnalLists2().remove(professionnalLists2);
-		professionnalLists2.setProfessionnalCategory2(null);
-
-		return professionnalLists2;
+		return professionnalList;
 	}
 
 }

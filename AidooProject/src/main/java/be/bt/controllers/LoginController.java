@@ -32,19 +32,17 @@ public class LoginController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView  login(
 			
-			@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout
+			@RequestParam(value = "error", required = false) String error
+			
 			) {
 		
 		ModelAndView model = new ModelAndView();
 		
 		if (error != null) {
-			model.addObject("error","Erreur: Login ou mot de passe incorrect, veuillez réessayer svp! ");
+			model.addObject("error"," Login ou mot de passe incorrect, veuillez réessayer svp! ");
 		}
 
-		if (logout != null) {
-			model.addObject("msg", "You've been logged out successfully.");
-		}
+		
 		model.setViewName("login1");
 
 		return model;

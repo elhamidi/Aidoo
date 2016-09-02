@@ -17,14 +17,14 @@ public class FrequencyDispo implements Serializable {
 	@Id
 	private int id;
 
-	//bi-directional many-to-one association to Person
-	@ManyToOne
-	private Person person;
-
 	//bi-directional many-to-one association to CatFrequencyDispo
 	@ManyToOne
 	@JoinColumn(name="cat_frequency_dispo_Id")
 	private CatFrequencyDispo catFrequencyDispo;
+
+	//bi-directional many-to-one association to Person
+	@ManyToOne
+	private Person person;
 
 	public FrequencyDispo() {
 	}
@@ -37,20 +37,20 @@ public class FrequencyDispo implements Serializable {
 		this.id = id;
 	}
 
-	public Person getPerson() {
-		return this.person;
-	}
-
-	public void setPerson(Person person) {
-		this.person = person;
-	}
-
 	public CatFrequencyDispo getCatFrequencyDispo() {
 		return this.catFrequencyDispo;
 	}
 
 	public void setCatFrequencyDispo(CatFrequencyDispo catFrequencyDispo) {
 		this.catFrequencyDispo = catFrequencyDispo;
+	}
+
+	public Person getPerson() {
+		return this.person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 
 }

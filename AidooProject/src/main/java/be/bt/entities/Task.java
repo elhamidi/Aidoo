@@ -18,14 +18,14 @@ public class Task implements Serializable {
 
 	private int exp;
 
-	//bi-directional many-to-one association to Person
-	@ManyToOne
-	private Person person;
-
 	//bi-directional many-to-one association to CatTask
 	@ManyToOne
 	@JoinColumn(name="cat_task_Id")
 	private CatTask catTask;
+
+	//bi-directional many-to-one association to Person
+	@ManyToOne
+	private Person person;
 
 	public Task() {
 	}
@@ -46,20 +46,20 @@ public class Task implements Serializable {
 		this.exp = exp;
 	}
 
-	public Person getPerson() {
-		return this.person;
-	}
-
-	public void setPerson(Person person) {
-		this.person = person;
-	}
-
 	public CatTask getCatTask() {
 		return this.catTask;
 	}
 
 	public void setCatTask(CatTask catTask) {
 		this.catTask = catTask;
+	}
+
+	public Person getPerson() {
+		return this.person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 
 }

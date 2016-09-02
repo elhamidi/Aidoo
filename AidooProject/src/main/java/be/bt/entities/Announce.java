@@ -33,7 +33,7 @@ public class Announce implements Serializable {
 
 	//bi-directional many-to-one association to CategoryAnnounce
 	@ManyToOne
-	@JoinColumn(name="category_Id")
+	@JoinColumn(name="category_announce_id")
 	private CategoryAnnounce categoryAnnounce;
 
 	//bi-directional many-to-one association to Person

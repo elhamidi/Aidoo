@@ -67,7 +67,7 @@
 						Aidoo </a>
 					<ul class="nav">
 
-						<li><a href="${pageContext.request.contextPath}/inscription"
+						<li><a href="${pageContext.request.contextPath}/registration"
 							title="Inscription">Inscription</a></li>
 
 
@@ -110,12 +110,12 @@
 		<!-- fin erreur -->
 
 
-			<form class="form-signin " action="<c:url value="/login" />"
-				method='POST'>
+			<form class="form-signin "  style="padding-left: 50px;margin-left:260px; max-width: 300px; " 
+			action="${pageContext.request.contextPath}/login" method='Post'>
 				<h2 class="form-signin-heading">login</h2>
 				<div class="form-control" style="padding-left: 0px">
-					<input type="text" class="form-control span4" name="username"
-						placeholder="Email " required="" autofocus="" />
+					<input type="text" class="form-control span4" name="login"
+						placeholder="login " required="" autofocus="" />
 				</div>
 				<div class="form-control" style="padding-left: 0px">
 					<input type="password" class="form-control span4" name="password"
@@ -146,6 +146,8 @@
 
 
 		</form>
+		
+	
 
 
 	</div>

@@ -968,7 +968,7 @@ input:focus, textarea:focus {
 
 	.lead-container {
 		overflow:hidden;
-		background:url(../img/carousel-macbook-background.png) 0 410px repeat-x;
+	/*	background:url(../img/carousel-macbook-background.png) 0 410px repeat-x;*/
 	}
 	.carousel.macbook {
 		position:relative;
@@ -2315,9 +2315,9 @@ input.animated:focus {
 }
 
 .form-signin {
-  max-width: 380px;
+
   padding: 15px 35px 45px;
-  margin: 0 auto;
+  margin: 10 auto;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.1);
 font-family: Open Sans;
