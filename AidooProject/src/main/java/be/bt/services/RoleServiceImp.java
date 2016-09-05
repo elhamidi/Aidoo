@@ -21,5 +21,11 @@ public class RoleServiceImp implements IRoleService {
 		
 		return roleRepository.getRoleByUser(username);
 	}
+
+	@Override
+	public UserRole saveRole(UserRole userRole) {
+		// TODO Auto-generated method stub
+		return roleRepository.save(userRole);
+	}
 	
 }

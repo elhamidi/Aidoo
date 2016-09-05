@@ -1,9 +1,14 @@
 package be.bt.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import be.bt.entities.ZipCode;
 
-public interface ZipCodeRepository extends JpaRepository<ZipCode, String> {
+@Repository
+public interface ZipCodeRepository extends JpaRepository<ZipCode, Integer> {
+	
+	
+	//ZipCode findByZipCode(String zipCode);
 
 }

@@ -10,6 +10,10 @@ import be.bt.repository.PersonRepository;
 
 @Service
 public class PersonServiceImp implements IPersonService {
+	
+	
+	@Autowired
+	IUserService userService;
 
 	@Autowired
 	PersonRepository personRepository;
@@ -25,6 +29,14 @@ public class PersonServiceImp implements IPersonService {
 	public Person save(Person p ){
 		return personRepository.save(p);
 		
+	}
+
+	@Override
+	public Person findByUser(String username) {
+		// TODO Auto-generated method stub
+		
+		
+		return personRepository.findByUser(userService.findByUsername(username));
 	}
 
 }

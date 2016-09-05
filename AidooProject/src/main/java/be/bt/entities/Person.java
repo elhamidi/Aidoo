@@ -1,7 +1,11 @@
 package be.bt.entities;
 
 import java.io.Serializable;
+
+import javax.annotation.Generated;
 import javax.persistence.*;
+import javax.validation.constraints.Size;
+
 import java.util.Date;
 import java.util.List;
 
@@ -16,6 +20,7 @@ public class Person implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
 	@Column(name="account_number")
@@ -28,9 +33,11 @@ public class Person implements Serializable {
 	private String email;
 
 	@Column(name="first_name")
+	@Size(min=2, max=30, message="Le Nom doit etre entre 2 et 30 caractéres")
 	private String firstName;
 
 	@Column(name="last_name")
+	@Size(min=2, max=30, message="Le Nom doit etre entre 2 et 30 caractéres")
 	private String lastName;
 
 	private String mobile;
@@ -76,7 +83,7 @@ public class Person implements Serializable {
 	private List<FrequencyDispo> frequencyDispos;
 
 	//bi-directional many-to-one association to MyUser
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="username")
 	private MyUser user;
 
@@ -96,6 +103,24 @@ public class Person implements Serializable {
 	//bi-directional many-to-one association to Task
 	@OneToMany(mappedBy="person")
 	private List<Task> tasks;
+	
+	private boolean profilCompleted = false;
+	
+	
+
+	/**
+	 * @return the profilCompleted
+	 */
+	public boolean isProfilCompleted() {
+		return profilCompleted;
+	}
+
+	/**
+	 * @param profilCompleted the profilCompleted to set
+	 */
+	public void setProfilCompleted(boolean profilCompleted) {
+		this.profilCompleted = profilCompleted;
+	}
 
 	public Person() {
 	}

@@ -23,7 +23,33 @@
 
 				<!-- Form Name -->
 
-				<!-- Select Basic -->
+					<!-- Text input-->
+				<div class="control-group">
+					<label class="span4 control-label" for="email">UserName </label>
+					<div class="span8">
+						<form:input id="username" path="user.username" type="text"
+							placeholder="username" class="form-control input-md  "
+							style="float:left" required="" />
+
+						<p align="center" style="color: red">
+							<form:errors path="user.username" />
+						</p>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="span4 control-label" for="password">Password
+					</label>
+					<div class="span8">
+						<form:input id="password" path="user.password" type="password"
+							class="form-control input-md  " style="float:left" required="" />
+
+						<p align="center" style="color: red">
+							<form:errors path="user.password" />
+						</p>
+					</div>
+				</div>
+
+
 
 
 				<!-- Text input-->
@@ -72,33 +98,85 @@
 
 				</div>
 
-				<!-- Text input-->
 				<div class="control-group">
-					<label class="span4 control-label" for="email">Login </label>
+					<label class="span4 control-label" for="email">Rue </label>
 					<div class="span8">
-						<form:input id="login" path="user.login" type="text"
-							placeholder="Login" class="form-control input-md  "
+						<form:input id="rue" path="person.street" type="text"
+							placeholder="rue" class="form-control input-md  "
 							style="float:left" required="" />
 
 						<p align="center" style="color: red">
-							<form:errors path="user.login" />
-						</p>
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="span4 control-label" for="password">Password </label>
-					<div class="span8">
-						<form:input id="password" path="user.password" type="password"
-						class="form-control input-md  "
-							style="float:left" required="" />
-
-						<p align="center" style="color: red">
-							<form:errors path="user.login" />
+							<form:errors path="person.street" />
 						</p>
 					</div>
 				</div>
 
+
+				<div class="control-group">
+					<label class="span4 control-label" for="email">Numéro </label>
+					<div class="span8">
+						<form:input id="numero" path="person.num" type="text"
+							placeholder="numero" class="form-control input-md  "
+							style="float:left" required="" />
+
+						<p align="center" style="color: red">
+							<form:errors path="person.num" />
+						</p>
+					</div>
+				</div>
+
+
+				<div class="control-group">
+					<label class="span4 control-label" for="email">Code Postal
+					</label>
+					<div class="span8">
+
+						<select name="zipcode">
+							<c:forEach items="${zipcodes}" var="zip">
+
+								<option value="${zip.id}">${zip.zipName}
+									${zip.zipCode}</option>
+
+							</c:forEach>
+
+						</select>
+
+						
+					</div>
+				</div>
 				
+				<div class="control-group">
+					<label class="span4 control-label" for="email">Fix </label>
+					<div class="span8">
+						<form:input id="phonenumber" path="person.phoneNumber" type="text"
+							placeholder="phoneNumber" class="form-control input-md  "
+							style="float:left" required="" />
+
+						<p align="center" style="color: red">
+							<form:errors path="person.phoneNumber" />
+						</p>
+					</div>
+				</div>
+					<div class="control-group">
+					<label class="span4 control-label" for="email">Mobile </label>
+					<div class="span8">
+						<form:input id="phonenumber" path="person.mobile" type="text"
+							placeholder="mobile" class="form-control input-md  "
+							style="float:left" required="" />
+
+						<p align="center" style="color: red">
+							<form:errors path="person.mobile" />
+						</p>
+					</div>
+				</div>
+
+
+
+
+
+			
+
+				<input name="categorie" type="hidden" value="${categorie}">
 
 				<div class="control-group span4 offset2" style="">
 

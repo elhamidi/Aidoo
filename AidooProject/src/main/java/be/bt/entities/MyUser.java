@@ -2,6 +2,8 @@ package be.bt.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.Size;
+
 import java.util.List;
 
 
@@ -16,10 +18,12 @@ public class MyUser implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Size(min=2, max=10, message="Le username doit etre entre 2 et 10 caractéres")
 	private String username;
 
-	private byte enabled;
+	private byte enabled=1;
 
+	@Size(min=4, max=8, message="Le mot de passe doit etre entre 4 et 8 caractéres")
 	private String password;
 
 	//bi-directional many-to-one association to Person

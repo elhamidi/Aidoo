@@ -831,13 +831,13 @@ input:focus, textarea:focus {
 		border-radius:3px;
 	}
 	.navbar .nav li.dropdown:hover {
-		background:#444;
+	/*	background:#000;*/
 	}
 	.navbar .nav li.dropdown a {
 		text-decoration: none;
 	}
 	.navbar .nav li.dropdown:hover a {
-		color:#fff!important;
+/* 		color:#fff!important; */
 	}
 	.navbar .nav li.dropdown ul li:first-child {
 		border-radius:0 3px 0 0;
@@ -857,9 +857,9 @@ input:focus, textarea:focus {
 	.navbar .nav li ul li {
 		margin:0;
 		padding:0;
-		background:#444;
+		background:rgba(255	,255,255,1);
 		width:160px;
-		border-bottom:1px solid rgba(255,255,255,0.1);
+		border-bottom:1px solid rgba(0,0,0,0.2);
 		-webkit-transition:all 0.3s;
 		-moz-transition:all 0.3s;
 		-o-transition:all 0.3s;
@@ -867,15 +867,19 @@ input:focus, textarea:focus {
 		transition:all 0.3s;
 	}
 	.navbar .nav li ul li:hover {
-		background:#F26A46;
+		background:#E0E0E0;
+		
+		
+		
 	}
 	.navbar .nav li ul li a {
 		padding:6px 10px;
 		margin:0;
 		display:inline-block;
 		text-decoration:none;
-		color:#fff;
-		font-size:0.9em;
+		color:#000;
+		font-size:1em;
+		
 	}
 	.navbar .nav li:hover ul {
 		margin:0;
@@ -884,6 +888,7 @@ input:focus, textarea:focus {
 		display:block;
 		position:absolute;
 		top:2.9em;
+		
 	}
 
 /* --------------------------------------------------------	*/
@@ -1314,7 +1319,7 @@ html:not(.osx) ::-webkit-scrollbar-thumb:vertical {
 	}
 	.project .thumbnail {
 		padding:0;
-		border-radius:0;
+		border-radius:0px;
 		overflow:hidden;
 	}
 	.project .project-description:before {
@@ -1322,19 +1327,19 @@ html:not(.osx) ::-webkit-scrollbar-thumb:vertical {
 		content:" ";
 		width:15px;
 		height:10px;
-		background:url(../img/triangle.png);
+		background:url(../img/triange.png);
 		position:absolute;
 		margin-top:-24px;
 		left:20px;
 	}
-	.project img {width:100%;}
+	.project img {width:60%; opacity:0.8;}
 	.project .project-description {
 		position:relative;
 		text-align:left;
 		padding:14px 20px 14px 42px;
-		background:white;
-		font-size:0.9em;
-		color:#666;
+		background:#5993a6;
+		font-size:1em;
+		color:#fff;
 	}
 	.project .project-description b {
 		font-weight:600;
@@ -1345,7 +1350,7 @@ html:not(.osx) ::-webkit-scrollbar-thumb:vertical {
 		left:20px;
 		font-size:16px;
 		font-weight:normal;
-		color:#C2C2BA;
+		color:#fff;
 	}
 	.project .project-description .project-tags {
 		display:block;
@@ -2134,7 +2139,7 @@ input.animated:focus {
 	padding:10px 20px;
 	margin:0;
 	background:#f8f8f8;
-	width:20%;
+	width:30%;
 	-webkit-transition:background-color 0.2s;
 	-moz-transition:background-color 0.2s;
 	-o-transition:background-color 0.2s;

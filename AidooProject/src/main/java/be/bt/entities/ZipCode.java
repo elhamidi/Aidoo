@@ -11,11 +11,12 @@ import java.util.List;
  */
 @Entity
 @Table(name="zip_code")
-@NamedQuery(name="ZipCode.findAll", query="SELECT z FROM ZipCode z")
+@NamedQuery(name="ZipCode.findAll", query="SELECT z FROM ZipCode z ORDER BY z.zipName")
 public class ZipCode implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
 	@Column(name="zip_code")

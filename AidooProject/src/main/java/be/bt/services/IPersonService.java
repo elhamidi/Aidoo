@@ -10,5 +10,7 @@ public interface IPersonService {
 	
 	List<Person> findPersonByZipCode(String zipCode);
 	Person save(Person p );
+	
+	Person findByUser(String user);
 
 }

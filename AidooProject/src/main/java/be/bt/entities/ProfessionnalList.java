@@ -15,6 +15,7 @@ public class ProfessionnalList implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_professionnal_list")
 	private int idProfessionnalList;
 
@@ -36,7 +37,7 @@ public class ProfessionnalList implements Serializable {
 	private byte smoker;
 
 	//bi-directional many-to-one association to Person
-	@ManyToOne
+	@ManyToOne (cascade=CascadeType.ALL)
 	private Person person;
 
 	//bi-directional many-to-one association to ProfessionnalCategory

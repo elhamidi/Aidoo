@@ -21,12 +21,12 @@
 				<!-- end Item -->
 				<!-- Item -->
 				<div class="item">
-					<img alt="" src="http://placehold.it/940x480/803080/fff" />
+					<img alt="" src="resources/img/Silde2.jpg" />
 				</div>
 				<!-- end Item -->
 				<!-- Item -->
 				<div class="item">
-					<img alt="" src="http://placehold.it/940x480/E48285/fff" />
+					<img alt="" src="resources/img/slide4.jpg" />
 				</div>
 				<!-- end Item -->
 			</div>
@@ -43,7 +43,7 @@
 			style="margin-top: 50px; margin-bottom: 50px;">
 			<form action="annonces" method="get">
 				<div class="span2 offset1">
-					<label>Rechercher</label>
+					<h4>Je Chercher</h4>
 				</div>
 
 				<div class="span3">
@@ -59,7 +59,8 @@
 					<select name="zipcode">
 						<c:forEach items="${zipcodes}" var="zip">
 
-							<option value="${zip.zipCode}">${zip.zipName}</option>
+							<option value="${zip.zipCode}">${zip.zipName}
+								${zip.zipCode}</option>
 
 						</c:forEach>
 
@@ -84,12 +85,12 @@
 
 				<div class="thumbnail">
 					<!-- image -->
-					<img alt="" src="resources/img/jeCherche.png">
+					<img alt="" src="resources/img/search-icon.png">
 
 					<!-- description -->
 					<div class="project-description">
 						<!-- icon -->
-						<i class="icon-picture"></i>
+						<i class="icon-search"></i>
 						<!-- name -->
 						<b class="project-name">Je cherche</b>
 					</div>
@@ -105,23 +106,23 @@
 
 			<article class="span3 project ">
 				<div class="thumbnail">
-					<img alt="" src="resources/img/jeSelectionne.png">
-						<div class="project-description">
-							<b class="name">Je selectionne</b> <i class="icon-font"></i>
-						</div>
+					<img alt="" src="resources/img/select.png">
+					<div class="project-description">
+						<b class="name">Je selectionne</b> <i class="icon-ok"></i>
+					</div>
 				</div>
 
 			</article>
 
 			<article class="span3 project ">
 				<div class="thumbnail">
-					<img alt="" src="resources/img/JeContact.png">
+					<img alt="" src="resources/img/contactUs.png">
 
 					<div class="project-description">
-						<b class="name">Je contacte</b> <i class="icon-play"></i>
+						<b class="name">Je contacte</b> <i class="icon-envelope"></i>
 					</div>
 				</div>
-				
+
 			</article>
 
 			<article class="span3 project ">
@@ -129,7 +130,7 @@
 					<img alt="" src="resources/img/JeRecommande.png">
 
 					<div class="project-description">
-						<b class="name">Je Recommande</b> <i class="icon-play"></i>
+						<b class="name">Je Recommande</b> <i class="icon-thumbs-up"></i>
 					</div>
 				</div>
 
@@ -148,39 +149,38 @@
 				<li rel="service-1" class=""><a href="#service-1"
 					data-toggle="tab">
 						<div>
-							<img src="resources/img/icons/globe.png" alt="">
-							<h5>Qui sommes nous ?</h5>
+
+							<h4>Qui sommes nous ?</h4>
 						</div>
 				</a></li>
 				<li rel="service-2"><a href="#service-2" data-toggle="tab">
 						<div>
-							<img src="resources/img/icons/upload.png" alt="">
-							<h5>Comment ca marche ?</h5>
+
+							<h4>Comment ca marche ?</h4>
 						</div>
 				</a></li>
 				<li rel="service-3" class="active"><a href="#service-3"
 					data-toggle="tab">
 						<div>
-							<img src="resources/img/icons/stopwatch.png" alt="">
-							<h5>Encore plus</h5>
+
+							<h4>En Savoir plus</h4>
 						</div>
 				</a></li>
 
 			</ul>
 			<div class="tab-content">
 				<div id="service-1" class="tab-pane">
-					<span class="price"> starting at <b>$299</b>
-
+					<span class="price"> <img
+						src="resources/img/icons/globe.png" />
 					</span>
 
-					<h3>Webdesign and web development</h3>
+					<h3>A Propos de Nous</h3>
 
 					<p>Professionally designed, custom websites with integrated web
 						content management systems (CMS). We're dedicated to providing
 						small businesses and organizations with high-quality web design
 						and web development services at a remarkably competitive value.</p>
-					<a class="button orange fr" href="work.html">view our portfolio
-						→</a>
+					<a class="button orange fr" href="work.html">Nous Contactez</a>
 					<p>Cupcake ipsum dolor sit amet wafer gummi bears pudding
 						applicake. Jujubes brownie powder. Sweet roll powder gingerbread
 						gummies. Cupcake ice cream sweet roll pie lollipop. Jelly-o
@@ -188,17 +188,18 @@
 
 				</div>
 				<div id="service-2" class="tab-pane">
-					<span class="price"> starting at <b>$29</b> per month
-					</span>
-					<h3>Cloud hosting and server related services</h3>
-					<p>Cloud computing is a set of pooled computing resources
-						delivered over the Internet. The cloud delivers a hosting
-						environment that doesn't limit an application to a specific set of
-						resources. Depending on the platform, an application can scale
-						dynamically and increase its share of resources on-the-fly.</p>
+					
+					<h3>Un mode de fonctionnement facile et efficace</h3>
+					<p>Donec at ex metus. Ut pulvinar turpis ligula, sit amet
+						dapibus lorem lobortis in. Proin et est in ipsum laoreet semper
+						eget vitae nunc. Nullam vehicula porttitor sem feugiat molestie.
+						Nulla sagittis auctor eros nec ultrices. Suspendisse potenti.
+						Quisque libero tortor, gravida a justo vel, volutpat dignissim
+						lorem. Nunc iaculis dolor luctus, molestie massa at, auctor diam.
+						Integer ut eros tortor..</p>
 				</div>
 				<div id="service-3" class="tab-pane active">
-					<h3>Social media training</h3>
+					<h3>En Savoir Plus</h3>
 					<p>Cupcake ipsum dolor sit amet wafer gummi bears pudding
 						applicake. Jujubes brownie powder. Sweet roll powder gingerbread
 						gummies. Cupcake ice cream sweet roll pie lollipop. Jelly-o

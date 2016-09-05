@@ -60,7 +60,7 @@ body {
 				<div class="span3">
 					<br>
 					<h3>
-						<a href="${pageContext.request.contextPath}/registration"> Je
+						<a href="${pageContext.request.contextPath}/registration?categorie=customer"> Je
 							suis un parent</a>
 					</h3>
 				</div>
@@ -72,7 +72,7 @@ body {
 				<div class="span3">
 					<br>
 					<h3>
-						<a href="${pageContext.request.contextPath}/registration">Je
+						<a href="${pageContext.request.contextPath}/registration?categorie=baby-sitter">Je
 							suis une Baby-sitter</a>
 					</h3>
 				</div>

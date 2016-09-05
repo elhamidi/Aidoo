@@ -12,12 +12,18 @@ import be.bt.repository.ZipCodeRepository;
 public class ZipCodeServiceImp implements IZipCodeService {
 	
 	@Autowired
-	ZipCodeRepository ZipCodeRepository;
+	ZipCodeRepository zipCodeRepository;
 
 	@Override
 	public List<ZipCode> findAllZipCodes() {
 		// TODO Auto-generated method stub
-		return ZipCodeRepository.findAll();
+		return zipCodeRepository.findAll();
+	}
+
+	@Override
+	public ZipCode getZipCodeByZipCode(int zipId) {
+		// TODO Auto-generated method stub
+		return zipCodeRepository.findOne(zipId);
 	}
 
 }

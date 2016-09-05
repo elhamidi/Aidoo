@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-
+import be.bt.entities.MyUser;
 import be.bt.entities.Person;
 import be.bt.entities.ZipCode;
 
@@ -19,5 +19,7 @@ public interface PersonRepository extends JpaRepository<Person, String>{
 	
 	@Query ("select p from Person p join fetch p.zipCode where p.zipCode.zipName = :zipname ")
 	List<Person> findByZipCode(@Param("zipname") String zipeCode);
+	
+	Person findByUser(MyUser user);
 			
 }

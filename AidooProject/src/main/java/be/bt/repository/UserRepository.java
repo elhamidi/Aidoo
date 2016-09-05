@@ -6,5 +6,7 @@ import be.bt.entities.MyUser;
 
 
 public interface UserRepository extends JpaRepository<MyUser, Integer> {
+	
+	MyUser findByUsername(String userName);
 
 }
