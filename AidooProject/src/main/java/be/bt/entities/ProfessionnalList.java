@@ -37,7 +37,7 @@ public class ProfessionnalList implements Serializable {
 	private byte smoker;
 
 	//bi-directional many-to-one association to Person
-	@ManyToOne (cascade=CascadeType.ALL)
+	@ManyToOne (cascade=CascadeType.PERSIST)
 	private Person person;
 
 	//bi-directional many-to-one association to ProfessionnalCategory

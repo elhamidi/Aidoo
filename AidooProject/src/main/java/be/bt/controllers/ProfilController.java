@@ -61,6 +61,10 @@ public class ProfilController {
 		System.out.println("entree dans addprofil");
 		System.out.println(profPerson.getProfessional().getIdProfessionnalList());
 		ProfessionnalList professional = profPerson.getProfessional();
+		
+		System.out.println(profPerson.getPerson().getId());
+				
+		professional.setPerson(profPerson.getPerson());
 		profesionalListService.update(professional);
 		System.out.println("Fin de addprofil");
 		return "home";

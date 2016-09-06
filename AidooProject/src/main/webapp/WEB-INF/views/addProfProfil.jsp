@@ -13,6 +13,8 @@
 					: </label>
 					
 					<form:hidden path="professional.IdProfessionnalList"  />
+					<form:hidden path="person.id"  />
+					<form:hidden path="professional.ProfessionnalCategory"  />
 				<div class="col-md-4">
 					<textarea class="form-control" id="textarea" name="txtArea"></textarea>
 				</div>
