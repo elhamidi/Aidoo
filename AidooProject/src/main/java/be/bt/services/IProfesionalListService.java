@@ -8,5 +8,7 @@ public interface IProfesionalListService {
 	ProfessionnalList  persist(ProfessionnalList profesional);
 	
 	ProfessionnalList findByPerson(Person p);
+	
+	public ProfessionnalList update(ProfessionnalList professional);
 
 }

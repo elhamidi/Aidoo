@@ -24,5 +24,12 @@ public class ProfesionalListServiceImp implements IProfesionalListService {
 		// TODO Auto-generated method stub
 		return profesionalListRepository.findByPerson(p);
 	}
+	
+	public ProfessionnalList update(ProfessionnalList professional){
+		
+		profesionalListRepository.save(professional);
+		return professional;
+		
+	}
 
 }
