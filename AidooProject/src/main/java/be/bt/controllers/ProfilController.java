@@ -10,11 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import be.bt.entities.Announce;
 import be.bt.entities.Person;
 import be.bt.entities.ProfessionnalList;
 import be.bt.repository.ProfesionalListRepository;
 import be.bt.services.IPersonService;
 import be.bt.services.IProfesionalListService;
+import be.bt.services.IRoleService;
+import be.bt.services.IZipCodeService;
 import be.bt.utilities.ProfPersonWrapper;
 
 @Controller
@@ -26,6 +29,8 @@ public class ProfilController {
 	@Autowired
 	IPersonService personService;
 	
+	@Autowired
+	IZipCodeService zipCodeService;
 	
 	@RequestMapping(value = "/showProfil", method = RequestMethod.GET)
 	public String home(ModelMap modelMap, @RequestParam (value="user") String username) {	
@@ -34,9 +39,14 @@ public class ProfilController {
 		Person person = personService.findByUser(username);
 		ProfessionnalList professional = profesionalListService.findByPerson(person);
 		
+		modelMap.addAttribute("zipcodes", zipCodeService.findAllZipCodes());
+		
 	System.out.println(	professional.getIdProfessionnalList());
 		
+	
+		
 		ProfPersonWrapper profPerson = new ProfPersonWrapper();
+		Announce annonce = new Announce();
 		profPerson.setPerson(person);
 		profPerson.setProfessional(professional);
 		System.out.println(profPerson.getProfessional().getIdProfessionnalList());
@@ -46,7 +56,7 @@ public class ProfilController {
 		if (!person.isProfilCompleted()){
 			System.out.println("Profil non complet");
 			
-			return "addProfProfil";
+			return "profilAdd";
 		}		
 		
 	//	ProfessionnalList professional = profesionalListService.findByPerson(person);
@@ -54,7 +64,7 @@ public class ProfilController {
 		return "showProfil";
 		
 	}
-	
+		
 	@RequestMapping(value = "/addProfProfil", method = RequestMethod.GET)
 	public String addProfProfil(Model model, @ModelAttribute ("profilForm") ProfPersonWrapper profPerson, 
 			BindingResult bindingRuselt) {
@@ -67,7 +77,7 @@ public class ProfilController {
 		professional.setPerson(profPerson.getPerson());
 		profesionalListService.update(professional);
 		System.out.println("Fin de addprofil");
-		return "home";
+		return "homePage";
 		
 	}
 	

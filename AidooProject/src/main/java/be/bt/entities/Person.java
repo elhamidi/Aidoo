@@ -83,7 +83,7 @@ public class Person implements Serializable {
 	private List<FrequencyDispo> frequencyDispos;
 
 	//bi-directional many-to-one association to MyUser
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="username")
 	private MyUser user;
 
@@ -105,7 +105,6 @@ public class Person implements Serializable {
 	private List<Task> tasks;
 	
 	private boolean profilCompleted = false;
-	
 	
 
 	/**

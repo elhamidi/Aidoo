@@ -23,9 +23,7 @@ public class Announce implements Serializable {
 	@Column(name="date_creation")
 	private Date dateCreation;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="date_update")
-	private Date dateUpdate;
+	
 
 	private String text;
 
@@ -67,13 +65,7 @@ public class Announce implements Serializable {
 		this.dateCreation = dateCreation;
 	}
 
-	public Date getDateUpdate() {
-		return this.dateUpdate;
-	}
-
-	public void setDateUpdate(Date dateUpdate) {
-		this.dateUpdate = dateUpdate;
-	}
+	
 
 	public String getText() {
 		return this.text;

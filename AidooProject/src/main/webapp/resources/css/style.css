@@ -2358,3 +2358,23 @@ font-family: Open Sans;
 /*   border-top-right-radius: 0; */
 /* } */
 
+
+
+.myBrand{
+	
+	font-weight: bold;
+    font-size: 36px;
+    letter-spacing: -2px;
+    line-height: 0.7em;
+    color: #000;
+    -webkit-transition: all 0.1s;
+    -moz-transition: all 0.1s;
+    -o-transition: all 0.1s;
+    -ms-transition: all 0.1s;
+    transition: all 0.1s;}
+    
+.myBrand:hover {
+    color: #7ED090;
+}
+
+

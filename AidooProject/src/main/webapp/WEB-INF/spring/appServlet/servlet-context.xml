@@ -14,9 +14,9 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
-<!-- 	<view-controller path="/login" view-name="login" /> -->
-	
-	
+	<!-- <view-controller path="/login" view-name="login" /> -->
+
+
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
@@ -27,10 +27,18 @@
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
+
 	</beans:bean>
 
 	<context:component-scan base-package="be.bt" />
 
 
+<!-- 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> -->
+<!-- 	<beans:property name="maxUploadSize" value="2097152"></beans:property> -->
+	
+	
+
+
+<!-- 	</beans:bean> -->
 
 </beans:beans>
