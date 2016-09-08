@@ -33,10 +33,16 @@ public class PersonServiceImp implements IPersonService {
 
 	@Override
 	public Person findByUser(String username) {
-		// TODO Auto-generated method stub
+		
 		
 		
 		return personRepository.findByUser(userService.findByUsername(username));
+	}
+
+	@Override
+	public Person savePerson(Person p) {
+		
+		return personRepository.save(p);
 	}
 
 }

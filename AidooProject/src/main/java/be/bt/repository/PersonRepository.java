@@ -17,7 +17,7 @@ import be.bt.entities.ZipCode;
 @Repository
 public interface PersonRepository extends JpaRepository<Person, String>{
 	
-	@Query ("select p from Person p join fetch p.zipCode where p.zipCode.zipName = :zipname ")
+	@Query ("select p from Person p join fetch p.zipCode join fetch p.announces join fetch p.user where p.zipCode.zipName = :zipname ")
 	List<Person> findByZipCode(@Param("zipname") String zipeCode);
 	
 	Person findByUser(MyUser user);

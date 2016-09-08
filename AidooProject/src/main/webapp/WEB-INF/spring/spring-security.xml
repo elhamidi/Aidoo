@@ -10,7 +10,7 @@
 	<security:http auto-config="true" use-expressions="true">
 
 
-		<security:intercept-url pattern="/showProfil**"
+		<security:intercept-url pattern="/showProfil?*"
 			access="hasRole('babysitter')" />
 		<security:intercept-url pattern="/home"
 			access="hasRole('babysitter')" />

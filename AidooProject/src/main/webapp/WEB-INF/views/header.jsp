@@ -83,7 +83,7 @@
 									<li><a href="${pageContext.request.contextPath}/showProfil?user=${pageContext.request.userPrincipal.name}" title="">Mon Profil</a></li>
 									<li><a href="{URL}" title="">Mes Annonces</a></li>
 									<li><a href="{URL}" title="">Mes Messages</a></li>
-									<li><a href="${pageContext.request.contextPath}/logout" title="">Déconenxion</a></li>
+									<li><a href="${pageContext.request.contextPath}/logout" title="">Déconnexion</a></li>
 
 								</ul></li>
 						</c:if>

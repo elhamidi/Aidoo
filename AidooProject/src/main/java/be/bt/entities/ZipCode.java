@@ -11,7 +11,7 @@ import java.util.List;
  */
 @Entity
 @Table(name="zip_code")
-@NamedQuery(name="ZipCode.findAll", query="SELECT z FROM ZipCode z ORDER BY z.zipName")
+@NamedQuery(name="ZipCode.findAll", query="SELECT z FROM ZipCode z ORDER BY z.zipCode")
 public class ZipCode implements Serializable {
 	private static final long serialVersionUID = 1L;
 

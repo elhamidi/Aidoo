@@ -66,10 +66,11 @@
 			</div>
 			<hr>
 
-			<form:form class="form-horizontal" commandName="profilForm">
-				<div class="container-fluid" style="border: 1px solid #c0c0c0; padding: 20px;">
-					<div class="span3"
-						style="">
+			<form:form class="form-horizontal" action="addProfProfil"
+				commandName="profilForm" method="GET">
+				<div class="container-fluid"
+					style="border: 1px solid #c0c0c0; padding: 20px;">
+					<div class="span3" style="">
 
 						<div style="text-align: center">
 							<div style="padding-bottom: 20px;">
@@ -86,12 +87,17 @@
 
 					</div>
 					<div class="span7" style="">
+						<form:hidden path="professional.IdProfessionnalList" />
+						<form:hidden path="person.id" />
+						<form:hidden path="user.username" />
+<%-- 						<form:hidden path="zipCode.id" /> --%>
+						<form:hidden path="professional.ProfessionnalCategory" />
 
 						<div class="control-group">
-							<label class="span3 control-label" for="lastname" >Nom </label>
+							<label class="span3 control-label" for="lastname">Nom </label>
 							<div class="span4">
 								<form:input id="lastname" path="person.lastName" type="text"
-									class="form-control input-md"  style="float: left" required="" />
+									class="form-control input-md" style="float: left" required="" />
 							</div>
 						</div>
 
@@ -131,16 +137,16 @@
 							<label class="span3 control-label" for="lastname">Code
 								Postal </label>
 							<div class="span4">
-								<select name="zipcode" >
+								<form:select path="zipCode.id">
 									<c:forEach items="${zipcodes}" var="zip">
 
-										<option value="${zip.id}">${zip.zipName}
-											${zip.zipCode}</option>
+										<option value="${zip.id}">${zip.zipCode}
+											${zip.zipName}</option>
 
 									</c:forEach>
 
 
-								</select>
+								</form:select>
 							</div>
 						</div>
 
@@ -149,24 +155,27 @@
 				</div>
 				<hr>
 
-				<div class="container-fluid" style="border: 1px solid #c0c0c0;padding: 20px;">
+				<div class="container-fluid"
+					style="border: 1px solid #c0c0c0; padding: 20px;">
 
-					<div class="span3"
-						style="">
+					<div class="span3" style="">
 
 						<div class="span3">
-							<input type="checkbox" path="professional.psc1" id="checkboxes-0"
-								value="1" /> Premiers secours
+							<form:checkbox path="professional.psc1" id="checkboxes-0"
+								value="1" />
+							Premiers secours
 
 						</div>
 						<div class="span3">
-							<input type="checkbox" path="professional.smoker"
-								id="checkboxes-0" value="1" /> Fumeur
+							<form:checkbox path="professional.smoker" id="checkboxes-1"
+								value="1" />
+							Fumeur
 
 						</div>
 						<div class="span3">
-							<input type="checkbox" path="professional.children"
-								id="checkboxes-0" value="1" /> Enfants
+							<form:checkbox path="professional.children" id="checkboxes-2"
+								value="1" />
+							Enfants
 
 						</div>
 
@@ -174,22 +183,21 @@
 
 
 					</div>
-					<div class="span7"
-						style="">
+					<div class="span7" style="">
 						<div class="control-group">
 							<label class="span3 control-label" for="lastname">Numéro
 								National </label>
 							<div class="span4">
-								<input id="firtname" path="person.firstName" type="text"
+								<form:input id="nis" path="person.nisNumber" type="text"
 									class="form-control input-md  " style="float: left" required="" />
 							</div>
 						</div>
 
 						<div class="control-group">
-							<label class="span3 control-label" for="lastname">Compte
+							<label class="span3 control-label" for="Account">Compte
 								Bancaire </label>
 							<div class="span4">
-								<input id="mobile" path="person.mobile" type="text"
+								<form:input id="mobile" path="person.accountNumber" type="text"
 									class="form-control input-md  " style="float: left" required="" />
 							</div>
 						</div>
@@ -197,8 +205,9 @@
 							<label class="span3 control-label" for="numéro">Tarif
 								Horaire </label>
 							<div class="span4">
-								<input id="numero" path="person.num" type="text"
-									class="form-control input-md  " style="float: left" required="" />
+								<form:input id="numero" path="professional.hourPrice"
+									type="text" class="form-control input-md  " style="float: left"
+									required="" />
 							</div>
 						</div>
 
@@ -211,23 +220,20 @@
 				<div>
 					<h4>Annonce</h4>
 				</div>
-				<div class="container-fluid"
-					>
-					<textarea class="span8" rows="10" cols="100"></textarea>
+				<div class="container-fluid">
+					<form:textarea id="annoncetxt" path="nouvelleAnnonce.text"
+						class="span8" rows="10" cols="100"></form:textarea>
 				</div>
 
-				<div class="container-fluid"
-					style="border:">
-					<div class="offset3"
-						style="">&nbsp</div>
-					<div class="span7"
-						style="padding-top: 20px; ">
+				<div class="container-fluid" style="border:">
+					<div class="offset3" style="">&nbsp</div>
+					<div class="span7" style="padding-top: 20px;">
 
 						<div class="span2">
 							<button type="submit" class="">Enregistrer</button>
 						</div>
 						<div class="span1 ">
-							<button  type="reset" class="btn-success">Réinitialier</button>
+							<button type="reset" class="btn-success">Réinitialier</button>
 						</div>
 
 

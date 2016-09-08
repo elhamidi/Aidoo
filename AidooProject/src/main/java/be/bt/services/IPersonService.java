@@ -12,5 +12,7 @@ public interface IPersonService {
 	Person save(Person p );
 	
 	Person findByUser(String user);
+	
+	Person savePerson(Person p );
 
 }
