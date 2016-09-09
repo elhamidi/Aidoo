@@ -1,5 +1,6 @@
 package be.bt.controllers;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import be.bt.entities.Announce;
+import be.bt.entities.CategoryAnnounce;
 import be.bt.entities.Person;
 import be.bt.entities.ProfessionnalList;
 import be.bt.repository.ProfesionalListRepository;
+import be.bt.services.CategoryAnnounceServiceImp;
 import be.bt.services.IAnnounceService;
+import be.bt.services.ICategoryAnnounceService;
 import be.bt.services.IPersonService;
 import be.bt.services.IProfesionalListService;
 import be.bt.services.IRoleService;
@@ -39,6 +43,9 @@ public class ProfilController {
 	
 	@Autowired 
 	IAnnounceService annonceService;
+	
+	@Autowired
+	ICategoryAnnounceService categorieAnnounceService;
 	
 	@Autowired
 	IUserService userService;
@@ -66,7 +73,10 @@ public class ProfilController {
 			System.out.println("Profil non complet");
 			
 			Announce nouvelleAnnonce = new Announce();
+			CategoryAnnounce categorie = categorieAnnounceService.findByName("Offre Baby-sitter");
 			profPerson.setNouvelleAnnonce(nouvelleAnnonce);
+			profPerson.setCategorieAnnonce(categorie);
+			
 			modelMap.addAttribute("profilForm",profPerson );
 			
 			return "profilAdd";
@@ -92,19 +102,36 @@ public class ProfilController {
 		
 		ProfessionnalList professional = profPerson.getProfessional();
 		Person person = profPerson.getPerson(); 
+		Announce nouvelleAnnonce= profPerson.getNouvelleAnnonce();
+		
+		
 		
 	//	System.out.println(profPerson.getPerson().getId());
 		
 		person.setUser(profPerson.getUser());
 		person.setZipCode(profPerson.getZipCode());
+		
 				
 		professional.setPerson(person);
 		System.out.println(profPerson.getUser().getUsername());
-		profesionalListService.update(professional);
+		
 		person.setProfilCompleted(true);
+		personService.save(person);
+		
+		profesionalListService.update(professional);
+		
+		nouvelleAnnonce.setCategoryAnnounce(profPerson.getCategorieAnnonce());
+		nouvelleAnnonce.setDateCreation(new Date());
+		nouvelleAnnonce.setPerson(person);
+		
+		annonceService.save(nouvelleAnnonce);
+		
+		
 
 	//	System.out.println(profPerson.getPerson().getUser().getUsername());
-		personService.save(person);
+		
+		
+		
 		
 		
 		System.out.println("Fin de addprofil");

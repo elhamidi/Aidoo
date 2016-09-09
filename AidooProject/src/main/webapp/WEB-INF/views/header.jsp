@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+<%@ page session="true"%>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
@@ -10,6 +10,39 @@
 <html class="not-ie" lang="en">
 <!--<![endif]-->
 <head>
+
+<style>
+.step-container {
+	padding-top: 20px;
+	padding: 46px;
+	background-color: #fff;
+	box-shadow: 1px 1px 6px 0 #cfcfcf;
+}
+
+.head-title {
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+.myBrand {
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	text-align: center;
+	font-weight: bold;
+	font-size: 36px;
+	letter-spacing: -2px;
+	line-height: 0.7em;
+	color: #000;
+	-webkit-transition: all 0.1s;
+	-moz-transition: all 0.1s;
+	-o-transition: all 0.1s;
+	-ms-transition: all 0.1s;
+	transition: all 0.1s;
+}
+
+.myBrand:hover {
+	color: #7ED090;
+}
+</style>
 
 <!-- Basic meta tags -->
 <meta charset="utf-8">
@@ -36,6 +69,8 @@
 	<link
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
 	rel='stylesheet' type='text/css'>
+	
+
 
 <!-- Javascript -->
 <script
@@ -74,7 +109,7 @@
 							<li class="dropdown" style="left:-50px;display: inline-block">
 							
 							<a
-								href="${pageContext.request.contextPath}/home" title="Connexion">
+								href="${pageContext.request.contextPath}/home" title="identité">
 
 									${pageContext.request.userPrincipal.name}</a>
 								

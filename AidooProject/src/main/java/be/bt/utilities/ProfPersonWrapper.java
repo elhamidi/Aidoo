@@ -3,6 +3,7 @@ package be.bt.utilities;
 import java.util.List;
 
 import be.bt.entities.Announce;
+import be.bt.entities.CategoryAnnounce;
 import be.bt.entities.MyUser;
 import be.bt.entities.Person;
 import be.bt.entities.ProfessionnalList;
@@ -14,7 +15,19 @@ public class ProfPersonWrapper {
 	private Person person;
 	private MyUser user;
 	private ZipCode zipCode;
-	
+	private CategoryAnnounce categorieAnnonce;
+	/**
+	 * @return the categorieAnnonce
+	 */
+	public CategoryAnnounce getCategorieAnnonce() {
+		return categorieAnnonce;
+	}
+	/**
+	 * @param categorieAnnonce the categorieAnnonce to set
+	 */
+	public void setCategorieAnnonce(CategoryAnnounce categorieAnnonce) {
+		this.categorieAnnonce = categorieAnnonce;
+	}
 	/**
 	 * @return the user
 	 */

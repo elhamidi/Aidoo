@@ -21,4 +21,10 @@ public class CategoryAnnounceServiceImp implements ICategoryAnnounceService {
 		return categoryAnnounceRepository.findAll();
 	}
 
+	@Override
+	public CategoryAnnounce findByName(String name) {
+		// TODO Auto-generated method stub
+		return categoryAnnounceRepository.findByName(name);
+	}
+
 }

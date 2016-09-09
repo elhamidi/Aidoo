@@ -90,7 +90,7 @@
 						<form:hidden path="professional.IdProfessionnalList" />
 						<form:hidden path="person.id" />
 						<form:hidden path="user.username" />
-<%-- 						<form:hidden path="zipCode.id" /> --%>
+						<%-- 						<form:hidden path="zipCode.id" /> --%>
 						<form:hidden path="professional.ProfessionnalCategory" />
 
 						<div class="control-group">
@@ -217,10 +217,23 @@
 
 				<hr>
 
-				<div>
+				<div style="">
 					<h4>Annonce</h4>
 				</div>
+				<div class="control-group " style="">
+					<label class="span1 control-label" for="titre" style="width:auto;">Titre </label>
+					<div class="span4"  style="">
+						<form:input id="titre" path="nouvelleAnnonce.title" type="text"
+							class=" form-control input-md " style="float: left" required="" />
+					</div>
+				</div>
+
+
 				<div class="container-fluid">
+					<form:hidden path="nouvelleAnnonce.id" />
+					<form:hidden path="categorieAnnonce.id" />
+
+
 					<form:textarea id="annoncetxt" path="nouvelleAnnonce.text"
 						class="span8" rows="10" cols="100"></form:textarea>
 				</div>

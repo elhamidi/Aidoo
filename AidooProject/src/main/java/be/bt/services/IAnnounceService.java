@@ -13,5 +13,7 @@ public interface IAnnounceService {
 	
 	List<Announce> findAnnoucesByZipCode(String zipCode);
 	List<Announce> findAnnoucesByZipCodeAndCategory(String zipCode, String catName);
+	
+	Announce save(Announce annonce);
 
 }

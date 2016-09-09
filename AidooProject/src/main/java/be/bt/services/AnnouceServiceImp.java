@@ -49,6 +49,12 @@ public class AnnouceServiceImp implements IAnnounceService {
 		
 		return announceRepository.findAnnoucesByZipCodeAndCategory(zipCode, catName);
 	}
+
+	@Override
+	public Announce save(Announce annonce) {
+		// TODO Auto-generated method stub
+		return announceRepository.save(annonce);
+	}
 	
 	
 

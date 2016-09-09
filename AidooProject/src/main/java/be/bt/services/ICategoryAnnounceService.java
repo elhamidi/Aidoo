@@ -8,5 +8,7 @@ public interface ICategoryAnnounceService {
 	
 	List<CategoryAnnounce> findAll();
 	
+	CategoryAnnounce findByName(String name);
+	
 
 }
