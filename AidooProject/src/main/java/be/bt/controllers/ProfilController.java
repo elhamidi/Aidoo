@@ -56,8 +56,13 @@ public class ProfilController {
 		modelMap.addAttribute("zipcodes", zipCodeService.findAllZipCodes());// a deplacer
 		Person person = personService.findByUser(username);
 		ProfessionnalList professional = profesionalListService.findByPerson(person);
+		System.out.println(person.getFirstName());
 
-		List<Announce> annonces = person.getAnnounces();
+		List<Announce> annonces = annonceService.findAnnounceByPerson(person);
+		
+	
+			System.out.println(annonces);
+		
 		
 		ProfPersonWrapper profPerson = new ProfPersonWrapper();
 		profPerson.setUser(person.getUser());

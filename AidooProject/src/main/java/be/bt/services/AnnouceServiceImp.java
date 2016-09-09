@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import be.bt.entities.Announce;
+import be.bt.entities.Person;
 import be.bt.repository.AnnounceRepository;
 
 @Service
@@ -33,9 +34,9 @@ public class AnnouceServiceImp implements IAnnounceService {
 	}
 
 	@Override
-	public List<Announce> findAnnounceByPerson(int PersonId) {
+	public List<Announce> findAnnounceByPerson(Person person) {
 		// TODO Auto-generated method stub
-		return null;
+		return announceRepository.findByPerson(person);
 	}
 
 	@Override

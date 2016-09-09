@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import be.bt.entities.Announce;
+import be.bt.entities.Person;
 
 @Repository
 public interface AnnounceRepository extends JpaRepository<Announce, String> {
@@ -28,6 +29,9 @@ public interface AnnounceRepository extends JpaRepository<Announce, String> {
 			+ " AND a.categoryAnnounce.name= :catName")
 	List<Announce> findAnnoucesByZipCodeAndCategory(@Param ("zip") String zipcode,
 			@Param ("catName") String catName);
+	
+	
+	List<Announce> findByPerson(Person person);
 	
 }
 
