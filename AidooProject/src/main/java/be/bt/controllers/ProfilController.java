@@ -31,118 +31,142 @@ import be.bt.utilities.ProfPersonWrapper;
 
 @Controller
 public class ProfilController {
-	
+
 	@Autowired
 	IProfesionalListService profesionalListService;
-	
+
 	@Autowired
 	IPersonService personService;
-	
+
 	@Autowired
 	IZipCodeService zipCodeService;
-	
-	@Autowired 
+
+	@Autowired
 	IAnnounceService annonceService;
-	
+
 	@Autowired
 	ICategoryAnnounceService categorieAnnounceService;
-	
+
 	@Autowired
 	IUserService userService;
-	
+
 	@RequestMapping(value = "/showProfil", method = RequestMethod.GET)
-	public String home(ModelMap modelMap, @RequestParam (value="user") String username) {	
-		
-		modelMap.addAttribute("zipcodes", zipCodeService.findAllZipCodes());// a deplacer
+	public String home(ModelMap modelMap, @RequestParam(value = "user") String username) {
+
+		boolean isProfessionnal = true;
+		CategoryAnnounce categorie =null;
+
+		modelMap.addAttribute("zipcodes", zipCodeService.findAllZipCodes());
 		Person person = personService.findByUser(username);
 		ProfessionnalList professional = profesionalListService.findByPerson(person);
-		System.out.println(person.getFirstName());
+
+		if (professional == null) {
+			isProfessionnal = false;
+
+		}
 
 		List<Announce> annonces = annonceService.findAnnounceByPerson(person);
-		
-	
-			System.out.println(annonces);
-		
-		
+
 		ProfPersonWrapper profPerson = new ProfPersonWrapper();
 		profPerson.setUser(person.getUser());
 		profPerson.setZipCode(person.getZipCode());
-	
+
 		profPerson.setPerson(person);
 		profPerson.setProfessional(professional);
 		profPerson.setAnnonces(annonces);
 
-	// si pas encore de profil
-		
-		if (!person.isProfilCompleted()){
+		// si pas encore de profil
+
+		if (!person.isProfilCompleted()) {
 			System.out.println("Profil non complet");
-			
+
 			Announce nouvelleAnnonce = new Announce();
-			CategoryAnnounce categorie = categorieAnnounceService.findByName("Offre Baby-sitter");
+			if (!isProfessionnal) {
+				 categorie = categorieAnnounceService.findByName("Demande Baby-sitter");
+			} else {
+				 categorie = categorieAnnounceService.findByName("Offre Baby-sitter");
+			}
 			profPerson.setNouvelleAnnonce(nouvelleAnnonce);
 			profPerson.setCategorieAnnonce(categorie);
+
+			modelMap.addAttribute("profilForm", profPerson);
 			
-			modelMap.addAttribute("profilForm",profPerson );
-			
+			if (!isProfessionnal){
+				return "addCmrProfil";
+			}
+
 			return "profilAdd";
-		}		
-		
-	//	ProfessionnalList professional = profesionalListService.findByPerson(person);
-		
+		}
+
+		// ProfessionnalList professional =
+		// profesionalListService.findByPerson(person);
+
 		// si profil existant
+
+		modelMap.addAttribute("profilForm", profPerson);
 		
-		modelMap.addAttribute("profilForm",profPerson );
-				
+		if (!isProfessionnal)
+		{
+			return "showCmrProfil";
+		}
+
 		return "showProfProfil";
-		
+
 	}
-		
+
 	@RequestMapping(value = "/addProfProfil", method = RequestMethod.GET)
-	public String addProfProfil(Model model, 
-								@ModelAttribute ("profilForm") ProfPersonWrapper profPerson, 
-								BindingResult bindingRuselt) {
+	public String addProfProfil(Model model, @ModelAttribute("profilForm") ProfPersonWrapper profPerson,
+			BindingResult bindingRuselt) {
 		
+		boolean isProfessionnal = true;
+
 		System.out.println("entree dans addprofil");
-		System.out.println(profPerson.getProfessional().getIdProfessionnalList());
 		
+
 		ProfessionnalList professional = profPerson.getProfessional();
-		Person person = profPerson.getPerson(); 
-		Announce nouvelleAnnonce= profPerson.getNouvelleAnnonce();
+		if (professional == null){
+			isProfessionnal = false;
+		}
 		
 		
+		Person person = profPerson.getPerson();
+		Announce nouvelleAnnonce = profPerson.getNouvelleAnnonce();
+
 		
-	//	System.out.println(profPerson.getPerson().getId());
-		
+
 		person.setUser(profPerson.getUser());
 		person.setZipCode(profPerson.getZipCode());
+
 		
-				
-		professional.setPerson(person);
-		System.out.println(profPerson.getUser().getUsername());
 		
+	
+
 		person.setProfilCompleted(true);
 		personService.save(person);
+
+		if (isProfessionnal){
+			professional.setPerson(person);
+			profesionalListService.update(professional);
+		}
 		
-		profesionalListService.update(professional);
-		
+
 		nouvelleAnnonce.setCategoryAnnounce(profPerson.getCategorieAnnonce());
 		nouvelleAnnonce.setDateCreation(new Date());
 		nouvelleAnnonce.setPerson(person);
-		
+
 		annonceService.save(nouvelleAnnonce);
+
+		// System.out.println(profPerson.getPerson().getUser().getUsername());
+
+		System.out.println("Fin de addprofil");
 		
+		if(!isProfessionnal){
+			return "showCmrProfil";
+		}
+		
+		return "showProfProfil";
 		
 
-	//	System.out.println(profPerson.getPerson().getUser().getUsername());
-		
-		
-		
-		
-		
-		System.out.println("Fin de addprofil");
-		return "homePage";
-		
 	}
-	
-	
+
 }
