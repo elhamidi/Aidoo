@@ -83,7 +83,7 @@
 					<div class="span3">
 
 						<c:out
-							value="${profilForm.person.zipCode.zipCode}   ${profilForm.person.zipCode.zipName}"></c:out>
+							value="${person.zipCode.zipName}"></c:out>
 
 					</div>
 				</div>

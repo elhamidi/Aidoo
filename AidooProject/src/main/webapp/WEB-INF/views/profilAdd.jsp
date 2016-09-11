@@ -137,7 +137,7 @@
 							<label class="span3 control-label" for="lastname">Code
 								Postal </label>
 							<div class="span4">
-								<form:select path="zipCode.id">
+								<form:select path="profilForm.zipCode.id">
 									<c:forEach items="${zipcodes}" var="zip">
 
 										<option value="${zip.id}">${zip.zipCode}

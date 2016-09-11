@@ -18,6 +18,7 @@ import be.bt.entities.Announce;
 import be.bt.entities.CategoryAnnounce;
 import be.bt.entities.Person;
 import be.bt.entities.ProfessionnalList;
+import be.bt.entities.ZipCode;
 import be.bt.repository.ProfesionalListRepository;
 import be.bt.services.CategoryAnnounceServiceImp;
 import be.bt.services.IAnnounceService;
@@ -143,9 +144,9 @@ public class ProfilController {
 		person.setUser(profPerson.getUser());
 	
 		
-		System.out.println(profPerson.getZipCode().getZipName());
+		ZipCode zip = profPerson.getZipCode();
 
-		
+		System.out.println(zip.getId());
 		
 	
 
