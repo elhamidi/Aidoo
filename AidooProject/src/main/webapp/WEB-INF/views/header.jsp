@@ -16,7 +16,7 @@
 	padding-top: 20px;
 	padding: 46px;
 	background-color: #fff;
-	box-shadow: 1px 1px 6px 0 #cfcfcf;
+	box-shadow: 1px 1px 10px 0 #cfcfcf;
 }
 
 .head-title {
@@ -41,6 +41,10 @@
 
 .myBrand:hover {
 	color: #7ED090;
+}
+
+body{
+/* background-color: #f2f2f2; */
 }
 </style>
 

@@ -90,7 +90,7 @@
 						<form:hidden path="professional.IdProfessionnalList" />
 						<form:hidden path="person.id" />
 						<form:hidden path="user.username" />
-						<%-- 						<form:hidden path="zipCode.id" /> --%>
+						<form:hidden path="zipCode.id" />
 						<form:hidden path="professional.ProfessionnalCategory" />
 
 						<div class="control-group">

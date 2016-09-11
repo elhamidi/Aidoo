@@ -11,7 +11,7 @@
 
 
 		<security:intercept-url pattern="/showProfil?*"
-			access="hasRole('babysitter')" />
+			access="hasAnyRole('babysitter','customer')" />
 		<security:intercept-url pattern="/home"
 			access="hasAnyRole('babysitter','customer')" />
 

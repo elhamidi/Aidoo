@@ -2694,3 +2694,13 @@ Added By Me -->.wrapper {
 	padding-left: 10px;
 	margin-top: 0px;
 }
+
+.info-title {
+    margin-bottom: 20px;
+    font-family: Avenir;
+}
+
+.info-title h4 {
+  color: #397b9d;
+    font-weight: 700;
+}

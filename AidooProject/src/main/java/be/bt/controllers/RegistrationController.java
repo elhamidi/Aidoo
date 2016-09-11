@@ -175,7 +175,7 @@ public class RegistrationController {
 
 		// Create the authorities for the user
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		authorities.add(new SimpleGrantedAuthority("babysitter")); // Autorité
+		authorities.add(new SimpleGrantedAuthority(userRole.getRole())); // Autorité
 																	// assignée
 																	// par
 																	// défaut

@@ -122,6 +122,8 @@ public class ProfilController {
 
 		System.out.println("entree dans addprofil");
 		
+		model.addAttribute("zipcodes", zipCodeService.findAllZipCodes());
+		
 
 		ProfessionnalList professional = profPerson.getProfessional();
 		if (professional == null){
@@ -130,12 +132,18 @@ public class ProfilController {
 		
 		
 		Person person = profPerson.getPerson();
+		
+		System.out.println(person.getLastName());
 		Announce nouvelleAnnonce = profPerson.getNouvelleAnnonce();
+		
+		
 
 		
 
 		person.setUser(profPerson.getUser());
-		person.setZipCode(profPerson.getZipCode());
+	
+		
+		System.out.println(profPerson.getZipCode().getZipName());
 
 		
 		
@@ -159,6 +167,12 @@ public class ProfilController {
 		// System.out.println(profPerson.getPerson().getUser().getUsername());
 
 		System.out.println("Fin de addprofil");
+		
+		List<Announce> annonces = annonceService.findAnnounceByPerson(person);
+		profPerson.setAnnonces(annonces);
+		profPerson.setZipCode(person.getZipCode());
+		
+	//	model.addAttribute("profPerson",profPerson);
 		
 		if(!isProfessionnal){
 			return "showCmrProfil";
