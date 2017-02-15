@@ -1,0 +1,134 @@
+// File 1 : Fail dossier account 1 and 2 payments
+    private static final String FIND_FAIL_ACCOUNT =     "WITH ONTVANGSTEN_UITGAVEN AS ((" +
+            " select  D.COL_NUMMER dossierNumber,D." + DossierDAOImpl.COL_NAAM + " DossierName, (DOUBLE(B.COL_BEDRAG)/DOUBLE(100)) AMOUNT, B." + BewegingDAOImpl.COL_DATUM_CREDITERING +" movementDate, CL.label consignementType" +
+            "        from " + UitgaveDAOImpl.TABLE_NAME +" U, " + DossierDAOImpl.TABLE_NAME + " D, " + RekeningDAOImpl.TABLE_NAME  +" R, " + BewegingDAOImpl.TABLE_NAME + " B, CODELIST CL  " +
+            "                where R." + RekeningDAOImpl.ID_DOSSIER + " = D." + DossierDAOImpl.ID +
+            "                and U." + UitgaveDAOImpl.ID_REKENING + " = R." + RekeningDAOImpl.ID +
+            "                and U." + UitgaveDAOImpl.COL_STATUS +" = 1 " +
+            "                and B." + BewegingDAOImpl.ID + " = U." + UitgaveDAOImpl.ID_BEWEGING +
+            "                and R." + RekeningDAOImpl.COL_CATEGORIE + " = CL.value" +
+            "                and CL.CODE = 'SP10B.REKENING.CATEGORIE'" +
+            "                and CL.LANGUAGE = ?3 " +
+            "                and ((R." + RekeningDAOImpl.COL_VOLGNUMMER + " = 1 and R." + RekeningDAOImpl.COL_TYPE + " = 1) or (R." + RekeningDAOImpl.COL_VOLGNUMMER + " = 2 and R." + RekeningDAOImpl.COL_TYPE + " = 2))" +
+            "                and D." + DossierDAOImpl.COL_AARD + " =1" +
+            "                and B." + BewegingDAOImpl.COL_DATUM_CREDITERING + " >= ?1" +
+            "                and B." + BewegingDAOImpl.COL_DATUM_CREDITERING+ " <= ?2" +
+            "                       order by B." + BewegingDAOImpl.COL_DATUM_CREDITERING + ")" +
+            " UNION ALL   " +
+            "(select  D.COL_NUMMER dossierNumber,D." + DossierDAOImpl.COL_NAAM + " DossierName, (DOUBLE(B.COL_BEDRAG)/DOUBLE(100)) AMOUNT, B." + BewegingDAOImpl.COL_DATUM_CREDITERING +" movementDate, CL.label consignementType" +
+            "        from " + OntvangstDAOImpl.TABLE_NAME +" O, " + DossierDAOImpl.TABLE_NAME + " D, " + RekeningDAOImpl.TABLE_NAME  +" R, " + BewegingDAOImpl.TABLE_NAME + " B, CODELIST CL  " +
+            "                where R." + RekeningDAOImpl.ID_DOSSIER + " = D." + DossierDAOImpl.ID +
+            "                and O." + OntvangstDAOImpl.ID_REKENING + " = R." + RekeningDAOImpl.ID +
+            "                and O." + OntvangstDAOImpl.COL_GEVALIDEERD +" = 1 " +
+            "                and B." + BewegingDAOImpl.ID + " = O." + OntvangstDAOImpl.ID_BEWEGING +
+            "                and R." + RekeningDAOImpl.COL_CATEGORIE + " = CL.value" +
+            "                and CL.CODE = 'SP10B.REKENING.CATEGORIE'" +
+            "                and CL.LANGUAGE = ?3 " +
+            "                and ((R." + RekeningDAOImpl.COL_VOLGNUMMER + " = 1 and R." + RekeningDAOImpl.COL_TYPE + " = 1) or (R." + RekeningDAOImpl.COL_VOLGNUMMER + " = 2 and R." + RekeningDAOImpl.COL_TYPE + " = 2))" +
+            "                and D." + DossierDAOImpl.COL_AARD + " =1" +
+            "                and B." + BewegingDAOImpl.COL_DATUM_CREDITERING + " >= ?1" +
+            "                and B." + BewegingDAOImpl.COL_DATUM_CREDITERING+ " <= ?2" +
+            "                       order by B." + BewegingDAOImpl.COL_DATUM_CREDITERING + "))" +
+            " SELECT * FROM ONTVANGSTEN_UITGAVEN OU ORDER BY OU.consignementType, OU.movementDate ";
+// File 2 : Fail dossier consignement account1
+    private static final String FIND_CONSIGNEMENT_ACCOUNT_1 = "WITH ONTVANGSTEN_UITGAVEN AS ((" +
+            "select  D.COL_NUMMER dossierNumber,D." + DossierDAOImpl.COL_NAAM + " DossierName, (DOUBLE(B.COL_BEDRAG)/DOUBLE(100)) AMOUNT, B." + BewegingDAOImpl.COL_DATUM_CREDITERING +" movementDate, CL.label consignementType" +
+            "        from " + UitgaveDAOImpl.TABLE_NAME +" U, " + DossierDAOImpl.TABLE_NAME + " D, " + RekeningDAOImpl.TABLE_NAME  +" R, " + BewegingDAOImpl.TABLE_NAME + " B, CODELIST CL  " +
+            "                where R." + RekeningDAOImpl.ID_DOSSIER + " = D." + DossierDAOImpl.ID +
+            "                and U." + UitgaveDAOImpl.ID_REKENING + " = R." + RekeningDAOImpl.ID +
+            "                and U." + UitgaveDAOImpl.COL_STATUS +" = 1 " +
+            "                and B." + BewegingDAOImpl.ID + " = U." + UitgaveDAOImpl.ID_BEWEGING +
+            "                and R." + RekeningDAOImpl.COL_CATEGORIE + " = CL.value" +
+            "                and CL.CODE = 'SP10B.REKENING.CATEGORIE'" +
+            "                and CL.LANGUAGE = ?3 " +
+            "                and R." + RekeningDAOImpl.COL_VOLGNUMMER + " = 1 " +
+            "                and D." + DossierDAOImpl.COL_AARD + " IN (2,3)" +
+            "                and D." + DossierDAOImpl.COL_NUMMER + " != 159717" +
+            "                and B." + BewegingDAOImpl.COL_DATUM_CREDITERING + " >= ?1" +
+            "                and B." + BewegingDAOImpl.COL_DATUM_CREDITERING+ " <= ?2" +
+            "                       order by B." + BewegingDAOImpl.COL_DATUM_CREDITERING + ")" +
+            " UNION ALL   " +
+            "(select  D.COL_NUMMER dossierNumber,D." + DossierDAOImpl.COL_NAAM + " DossierName, (DOUBLE(B.COL_BEDRAG)/DOUBLE(100)) AMOUNT, B." + BewegingDAOImpl.COL_DATUM_CREDITERING +" movementDate, CL.label consignementType" +
+            "        from " + OntvangstDAOImpl.TABLE_NAME +" O, " + DossierDAOImpl.TABLE_NAME + " D, " + RekeningDAOImpl.TABLE_NAME  +" R, " + BewegingDAOImpl.TABLE_NAME + " B, CODELIST CL  " +
+            "                where R." + RekeningDAOImpl.ID_DOSSIER + " = D." + DossierDAOImpl.ID +
+            "                and O." + OntvangstDAOImpl.ID_REKENING + " = R." + RekeningDAOImpl.ID +
+            "                and O." + OntvangstDAOImpl.COL_GEVALIDEERD +" = 1 " +
+            "                and B." + BewegingDAOImpl.ID + " = O." + OntvangstDAOImpl.ID_BEWEGING +
+            "                and R." + RekeningDAOImpl.COL_CATEGORIE + " = CL.value" +
+            "                and CL.CODE = 'SP10B.REKENING.CATEGORIE'" +
+            "                and CL.LANGUAGE = ?3 \n" +
+            "                and R." + RekeningDAOImpl.COL_VOLGNUMMER + " = 1 " +
+            "                and D." + DossierDAOImpl.COL_AARD + " IN (2,3)" +
+            "                and D." + DossierDAOImpl.COL_NUMMER + " != 159717" +
+            "                and B." + BewegingDAOImpl.COL_DATUM_CREDITERING + " >= ?1" +
+            "                and B." + BewegingDAOImpl.COL_DATUM_CREDITERING+ " <= ?2" +
+            "                       order by B." + BewegingDAOImpl.COL_DATUM_CREDITERING + "))" +
+            " SELECT * FROM ONTVANGSTEN_UITGAVEN OU ORDER BY OU.consignementType, OU.movementDate ";
+
+// File 3 : Fail dossier consignement account 2
+    private static final String FIND_CONSIGNEMENT_ACCOUNT_2 = "WITH ONTVANGSTEN_UITGAVEN AS ((" +
+            "select  D.COL_NUMMER dossierNumber, D." + DossierDAOImpl.COL_NAAM + " DossierName, (DOUBLE(B.COL_BEDRAG)/DOUBLE(100)) AMOUNT, B." + BewegingDAOImpl.COL_DATUM_CREDITERING +" movementDate, CL.label consignementType" +
+            "        from " + UitgaveDAOImpl.TABLE_NAME +" U, " + DossierDAOImpl.TABLE_NAME + " D, " + RekeningDAOImpl.TABLE_NAME  +" R, " + BewegingDAOImpl.TABLE_NAME + " B, CODELIST CL  " +
+            "                where R." + RekeningDAOImpl.ID_DOSSIER + " = D." + DossierDAOImpl.ID +
+            "                and U." + UitgaveDAOImpl.ID_REKENING + " = R." + RekeningDAOImpl.ID +
+            "                and U." + UitgaveDAOImpl.COL_STATUS +" = 1 " +
+            "                and B." + BewegingDAOImpl.ID + " = U." + UitgaveDAOImpl.ID_BEWEGING +
+            "                and R." + RekeningDAOImpl.COL_CATEGORIE + " = CL.value " +
+            "                and CL.CODE = 'SP10B.REKENING.CATEGORIE'" +
+            "                and CL.LANGUAGE = ?3 " +
+            "                and R." + RekeningDAOImpl.COL_VOLGNUMMER + " = 2 " +
+            "                and D." + DossierDAOImpl.COL_AARD + " IN (2,3)" +
+            "                and D." + DossierDAOImpl.COL_NUMMER + " != 159717" +
+            "                and B." + BewegingDAOImpl.COL_DATUM_CREDITERING + " >= ?1" +
+            "                and B." + BewegingDAOImpl.COL_DATUM_CREDITERING+ " <= ?2" +
+            "                       order by B." + BewegingDAOImpl.COL_DATUM_CREDITERING + ")" +
+            " UNION ALL   " +
+            "(select D.COL_NUMMER dossierNumber,  D." + DossierDAOImpl.COL_NAAM + " DossierName, (DOUBLE(B.COL_BEDRAG)/DOUBLE(100)) AMOUNT, B." + BewegingDAOImpl.COL_DATUM_CREDITERING +" movementDate, CL.label consignementType" +
+            "        from " + OntvangstDAOImpl.TABLE_NAME +" O, " + DossierDAOImpl.TABLE_NAME + " D, " + RekeningDAOImpl.TABLE_NAME  +" R, " + BewegingDAOImpl.TABLE_NAME + " B, CODELIST CL  " +
+            "                where R." + RekeningDAOImpl.ID_DOSSIER + " = D." + DossierDAOImpl.ID +
+            "                and O." + OntvangstDAOImpl.ID_REKENING + " = R." + RekeningDAOImpl.ID +
+            "                and O." + OntvangstDAOImpl.COL_GEVALIDEERD +" = 1 " +
+            "                and B." + BewegingDAOImpl.ID + " = O." + OntvangstDAOImpl.ID_BEWEGING +
+            "                and R." + RekeningDAOImpl.COL_CATEGORIE + " = CL.value" +
+            "                and CL.CODE = 'SP10B.REKENING.CATEGORIE'" +
+            "                and CL.LANGUAGE = ?3 " +
+            "                and R." + RekeningDAOImpl.COL_VOLGNUMMER + " = 2 " +
+            "                and D." + DossierDAOImpl.COL_AARD + " IN (2,3)" +
+            "                and D." + DossierDAOImpl.COL_NUMMER + " != 159717" +
+            "                and B." + BewegingDAOImpl.COL_DATUM_CREDITERING + " >= ?1" +
+            "                and B." + BewegingDAOImpl.COL_DATUM_CREDITERING+ " <= ?2" +
+            "                       order by B." + BewegingDAOImpl.COL_DATUM_CREDITERING + "))" +
+
+            " SELECT * FROM ONTVANGSTEN_UITGAVEN OU ORDER BY OU.consignementType, OU.movementDate ";
+
+ // File 4 : Fail dossier waiting account
+    private static final String FIND_WAITING_ACCOUNT = "WITH ONTVANGSTEN_UITGAVEN AS ((" +
+            "select  D.COL_NUMMER dossierNumber, D." + DossierDAOImpl.COL_NAAM + " DossierName, (DOUBLE(B.COL_BEDRAG)/DOUBLE(100)) AMOUNT, B." + BewegingDAOImpl.COL_DATUM_CREDITERING +" movementDate, CL.label consignementType" +
+            "        from " + UitgaveDAOImpl.TABLE_NAME +" U, " + DossierDAOImpl.TABLE_NAME + " D, " + RekeningDAOImpl.TABLE_NAME  +" R, " + BewegingDAOImpl.TABLE_NAME + " B, CODELIST CL  " +
+            "                where R." + RekeningDAOImpl.ID_DOSSIER + " = D." + DossierDAOImpl.ID +
+            "                and U." + UitgaveDAOImpl.ID_REKENING + " = R." + RekeningDAOImpl.ID +
+            "                and U." + UitgaveDAOImpl.COL_STATUS +" = 1 " +
+            "                and B." + BewegingDAOImpl.ID + " = U." + UitgaveDAOImpl.ID_BEWEGING +
+            "                and R." + RekeningDAOImpl.COL_CATEGORIE + " = CL.value " +
+            "                and CL.CODE = 'SP10B.REKENING.CATEGORIE'" +
+            "                and CL.LANGUAGE = ?3 " +
+            "                and D." + DossierDAOImpl.COL_NUMMER + " = 159717" +
+            "                and B." + BewegingDAOImpl.COL_DATUM_CREDITERING + " >= ?1" +
+            "                and B." + BewegingDAOImpl.COL_DATUM_CREDITERING+ " <= ?2" +
+            "                       order by B." + BewegingDAOImpl.COL_DATUM_CREDITERING + ")" +
+            " UNION ALL   " +
+            "(select D.COL_NUMMER dossierNumber,  D." + DossierDAOImpl.COL_NAAM + " DossierName, (DOUBLE(B.COL_BEDRAG)/DOUBLE(100)) AMOUNT, B." + BewegingDAOImpl.COL_DATUM_CREDITERING +" movementDate, CL.label consignementType" +
+            "        from " + OntvangstDAOImpl.TABLE_NAME +" O, " + DossierDAOImpl.TABLE_NAME + " D, " + RekeningDAOImpl.TABLE_NAME  +" R, " + BewegingDAOImpl.TABLE_NAME + " B, CODELIST CL  " +
+            "                where R." + RekeningDAOImpl.ID_DOSSIER + " = D." + DossierDAOImpl.ID +
+            "                and O." + OntvangstDAOImpl.ID_REKENING + " = R." + RekeningDAOImpl.ID +
+            "                and O." + OntvangstDAOImpl.COL_GEVALIDEERD +" = 1 " +
+            "                and B." + BewegingDAOImpl.ID + " = O." + OntvangstDAOImpl.ID_BEWEGING +
+            "                and R." + RekeningDAOImpl.COL_CATEGORIE + " = CL.value" +
+            "                and CL.CODE = 'SP10B.REKENING.CATEGORIE'" +
+            "                and CL.LANGUAGE = ?3 " +
+            "                and D." + DossierDAOImpl.COL_NUMMER + " = 159717" +
+            "                and B." + BewegingDAOImpl.COL_DATUM_CREDITERING + " >= ?1" +
+            "                and B." + BewegingDAOImpl.COL_DATUM_CREDITERING+ " <= ?2" +
+            "                       order by B." + BewegingDAOImpl.COL_DATUM_CREDITERING + "))" +
+
+            " SELECT * FROM ONTVANGSTEN_UITGAVEN OU ORDER BY OU.consignementType, OU.movementDate ";
