@@ -1,0 +1,84 @@
+ -- Solde au 30/06/2016 (disponible - les mouvements effectués après) sur tous les dossiers ex-faillites (uniquement le capital disponible, sans compter les intérêts)         
+ WITH BALANCE_END_DATE_BY_REKENING AS (select D.ID_REKENING as ID_REKENING, D.COL_NUMMER,
+        DOUBLE(COALESCE(SUM(O.col_Beschikbaar_Kapitaal)*100,0) - (select COALESCE(SUM(B.col_Bedrag),0) from Bewegingen B 
+        where  B.col_Datum_Creditering > '2016-06-30' 
+        and B.ID IN (
+                select O2.ID_Beweging C0 from Ontvangsten O2
+                        where  O2.id_rekening = D.id_rekening
+                        and O2.col_Gevalideerd = 1 
+                UNION select U.ID_BEWEGING C0
+                        from Uitgaven U 
+                        where  U.ID_REKENING = D.id_rekening 
+                        and U.col_Gevalideerd_A = 1)))/DOUBLE(100) as BALANCE_END_DATE from Dossiers D, Rekeningen R, Ontvangsten O
+                        where  O.ID_Rekening = D.id_rekening
+                        and D.id_rekening = R.id
+                        and R.col_categorie = '101'
+                        and O.col_Gevalideerd = 1
+                        group by D.ID_REKENING, D.COL_NUMMER),
+                
+  -- Solde au 30/06/2015 (disponible - les mouvements effectués après) sur tous les dossiers ex-faillites (uniquement le capital disponible, sans compter les intérêts)         
+ BALANCE_START_DATE_BY_REKENING AS (select D.ID_REKENING as ID_REKENING, D.COL_NUMMER,
+        DOUBLE(COALESCE(SUM(O.col_Beschikbaar_Kapitaal)*100,0) - (select COALESCE(SUM(B.col_Bedrag),0) from Bewegingen B 
+        where  B.col_Datum_Creditering > '2015-06-30' 
+        and B.ID IN (
+                select O2.ID_Beweging C0 from Ontvangsten O2
+                        where  O2.id_rekening = D.id_rekening
+                        and O2.col_Gevalideerd = 1 
+                UNION select U.ID_BEWEGING C0
+                        from Uitgaven U 
+                        where  U.ID_REKENING = D.id_rekening 
+                        and U.col_Gevalideerd_A = 1)))/DOUBLE(100) as BALANCE_START_DATE from Dossiers D, Rekeningen R, Ontvangsten O
+                        where  O.ID_Rekening = D.id_rekening
+                        and D.id_rekening = R.id
+                        and R.col_categorie = '101'
+                        and O.col_Gevalideerd = 1
+                        group by D.ID_REKENING, D.COL_NUMMER),             
+                        
+ -- Sommes des mouvements entre le 01/07/2015 et le 30/06/2016 (utilisation des intérêts inclus)
+ONTVANSTEN_MOVEMENT AS (select O.ID_REKENING as ID_REKENING, DOUBLE(COALESCE(SUM(B.col_Bedrag),0))/DOUBLE(100) as AMOUNT
+                        from Ontvangsten O, Rekeningen R, Bewegingen B
+                        where  O.ID_Rekening = R.id
+                        and o.id_beweging = b.id
+                        and R.col_categorie = '101'
+                        and O.col_Gevalideerd = 1 
+                        and B.col_Datum_Creditering > '2015-06-30' 
+                        and B.col_Datum_Creditering <= '2016-06-30' 
+                        GROUP BY O.ID_REKENING),
+
+UITGAVEN_MOVEMENT AS (select U.ID_REKENING as ID_REKENING, DOUBLE(COALESCE(SUM(B.col_Bedrag),0))/DOUBLE(100) as AMOUNT
+                        from Uitgaven U, Rekeningen R, Bewegingen B  
+                        where  U.ID_REKENING = R.id 
+                        and b.id = u.id_beweging
+                        and R.col_categorie = '101' 
+                        and U.col_Gevalideerd_A = 1
+                        and B.col_Datum_Creditering > '2015-06-30' 
+                        and B.col_Datum_Creditering <= '2016-06-30' 
+                        GROUP BY U.ID_REKENING),
+                        
+MOVEMENT_SUM AS (SELECT R.ID as ID_REKENING, COALESCE(OM.AMOUNT,0) as O_AMOUNT, COALESCE(UM.AMOUNT,0) as U_AMOUNT, (COALESCE(OM.AMOUNT,0) + COALESCE(UM.AMOUNT,0)) as SUM_ONTVANGST_UITGAVE, D.COL_NUMMER
+        FROM REKENINGEN R, (UITGAVEN_MOVEMENT UM FULL OUTER JOIN ONTVANSTEN_MOVEMENT OM ON UM.ID_REKENING = OM.ID_REKENING), DOSSIERS D
+        WHERE (R.ID = UM.ID_REKENING
+        OR R.ID = OM.ID_REKENING)
+        AND D.ID_REKENING = R.ID
+        GROUP BY R.ID, COALESCE(OM.AMOUNT,0), COALESCE(UM.AMOUNT,0), D.COL_NUMMER),
+        
+        
+-- Date première consignation pour les dossiers ex-faillites
+DATE_FIRST_CONSIGNATION AS (select R.ID as ID_REKENING, min(O.col_Datum_Inschrijving) as FIRST_CONSIGNATION_DATE 
+        from Ontvangsten O, Rekeningen R 
+        where R.col_categorie = '101' 
+        and R.ID = O.ID_Rekening 
+        and O.col_Gevalideerd = 1 
+        GROUP BY R.ID)
+
+-- Requête complète (Attention, il faut remettre à zéro les BALANCE_START_DATE qui correspondent aux intérêts)
+
+SELECT D.COL_NAAM, D.COL_ADRES, D.COL_DATUM_FAILLISSEMENT, A.COL_NAAM, D.COL_DATUM_AFSLUITING_FAILL, D.COL_NUMMER, DFC.FIRST_CONSIGNATION_DATE, BSDBR.BALANCE_START_DATE, MS.SUM_ONTVANGST_UITGAVE as MOVEMENT, BEDBR.BALANCE_END_DATE
+        FROM DATE_FIRST_CONSIGNATION DFC, DOSSIERS D, MOVEMENT_SUM MS LEFT OUTER JOIN BALANCE_END_DATE_BY_REKENING BEDBR ON MS.ID_REKENING = BEDBR.ID_REKENING, BALANCE_START_DATE_BY_REKENING BSDBR, AGENTSCHAPPEN A
+                WHERE MS.ID_REKENING = DFC.ID_REKENING
+                AND MS.ID_REKENING = D.ID_REKENING
+                AND MS.ID_REKENING = BSDBR.ID_REKENING
+                AND COALESCE(D.ID_OLD_AGENTSCHAP,D.ID_AGENTSCHAP)=A.ID 
+                GROUP BY MS.ID_REKENING, D.COL_NUMMER, D.COL_NAAM, D.COL_ADRES, D.COL_DATUM_FAILLISSEMENT, A.COL_NAAM, D.COL_DATUM_AFSLUITING_FAILL, DFC.FIRST_CONSIGNATION_DATE, MS.SUM_ONTVANGST_UITGAVE, BSDBR.BALANCE_START_DATE, BEDBR.BALANCE_END_DATE
+                HAVING BEDBR.BALANCE_END_DATE != 0
+                ORDER BY BEDBR.BALANCE_END_DATE DESC;
