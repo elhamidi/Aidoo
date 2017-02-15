@@ -1,0 +1,39 @@
+maven : 
+-----
+-	mvn clean install
+-	mvn clean install -Dmaven.test.skip=true  (pour skipper les tests)  
+
+Paths :
+------
+cd /cygdrive/C/StarTeam/CCFF2-SP10b-TresorerieFaillites/04_Implementation/FUP_00_Source/projectSRC
+cd /cygdrive/C/StarTeam/CCFF2-SP10b-TresorerieFaillites/05_Tests/VirtualBox/vagrant/rapiddev
+
+copy EAR :
+-------- 
+cp /cygdrive/C/StarTeam/CCFF2-SP10b-TresorerieFaillites/04_Implementation/FUP_00_Source/projectSRC/app_caisses/target/CCFF_SP10B_Caisses-6.5.4-SNAPSHOT.ear /cygdrive/C/StarTeam/CCFF2-SP10b-TresorerieFaillites/05_Tests/VirtualBox/vagrant/rapiddev/deploy
+
+
+Deploy
+--------
+Dans vagrant :
+cd /vagrant/bin
+./wl_deploy.sh redeploy ../deploy/CCFF_SP10B_Caisses-6.5.4-SNAPSHOT.ear
+
+user & password:
+--------------- 
+testuser.sp10b02
+sp10btest
+
+
+
+FormulierFondsenDossierVO : vo pour les csv exfaillite
+FormulierFondsenVO : 
+
+
+
+VERSLAG
+
+
+159717 Dossier payments en attente
+
+
